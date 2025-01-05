@@ -1,12 +1,13 @@
 const express = require('express'); 
 const bodyParser = require('body-parser'); 
 const mysql = require('mysql2');
+require('dotenv').config()
 
 const db = mysql.createConnection({ 
-    host: 'localhost', // Adres URL/IP serwera
-    user: '', // Użytkownik MySQL
-    password: '', // Hasło MySQL
-    database: '' // Nazwa bazy danych 
+    host: process.env.DB_HOSTNAME, // Adres URL/IP serwera
+    user: process.env.DB_USER, // Użytkownik MySQL
+    password: process.env.DB_PASSWORD, // Hasło MySQL
+    database: process.env.DB_NAME // Nazwa bazy danych 
     });
 
 db.connect((err) => {
@@ -30,4 +31,4 @@ app.post('/submit', (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => {console.log(`Serwer działa na http://${db.host}:${PORT}`); });
+app.listen(PORT, () => {console.log(`Serwer działa na http://${process.env.DB_HOSTNAME}:${PORT}`); });

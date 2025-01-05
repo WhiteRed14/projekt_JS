@@ -33,5 +33,6 @@ API:
 --------
 
 Serwer:
-Baza danych (relacyjna - mySQL?) + express + bodyParser 
-potencjalnie nierelacyjna?? - wtedy MongoDB
+Baza danych (relacyjna - mySQL?) + express + bodyParser + dotenv
+
+    
