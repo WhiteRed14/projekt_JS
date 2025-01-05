@@ -25,3 +25,13 @@ Po wybraniu oferty -> wyświetla się formularz rezerwacji:
     numer telefonu (w tym pole do numeru kierunkowego),
     przycisk "Rezerwuj"
 
+--------
+
+API:
+    dunno yet
+
+--------
+
+Serwer:
+Baza danych (relacyjna - mySQL?) + express + bodyParser 
+potencjalnie nierelacyjna?? - wtedy MongoDB
