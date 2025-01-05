@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Booking.com</title>
 </head>
@@ -26,16 +26,45 @@
 
     <div class="search-section">
         <div class="search-bar">
-          <input type="text" placeholder="Dokąd się wybierasz?">
-          <input type="date" placeholder="Data zameldowania">
-          <input type="date" placeholder="Data wymeldowania">
-          <select>
-            <option>2 dorośli · 0 dzieci · 1 pokój</option>
+          <!-- Szukanie miejscowość -->
+          <select id="location">
+            <option value="" disabled selected>Wybierz miejscowość</option>
+            <option value="warszawa">Warszawa</option>
+            <option value="krakow">Kraków</option>
+            <option value="gdynia">Gdynia</option>
           </select>
-          <button>Szukaj</button>
-        </div>
-    </div>
 
+          <!-- data zameldowania i wymeldowania -->
+          <input type="date"  id="checkin" placeholder="Data zameldowania">
+          <input type="date" id="checkout" placeholder="Data wymeldowania">
+          
+          <!-- Liczba osób -->
+          <div class="guests">
+            <div id="guests-sum">2 dorośli · 0 dzieci · 1 pokój</div>
+            <div id="guests-details" class="hidden">
+              <div>
+                <label>Dorośli</label>
+                <button class="btn-decrease" data-type="adults">-</button>
+                <span id="adults-count">2</span>
+                <button class="btn-increase" data-type="adults">+</button>
+              </div>
+              <div>
+                <label>Dzieci</label>
+                <button class="btn-decrease" data-type="children">-</button>
+                <span id="children-count">0</span>
+                <button class="btn-increase" data-type="children">+</button>
+              </div>
+              <div>
+                <label>Pokoje</label>
+                <button class="btn-decrease" data-type="rooms">-</button>
+                <span id="rooms-count">1</span>
+                <button class="btn-increase" data-type="rooms">+</button>
+              </div>
+            </div>
+          </div>
+          <button id="search-button">Szukaj</button>
+        </div>
+      </div>
 
     <div class="main-content">
         <p>Strona główna</p>
