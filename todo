@@ -1,2 +1,27 @@
-something
-sddsf
+Klient:
+HTML + JS + Fetch
+
+    Formularz do wyszukiwania ofert noclegowych:
+        Miejsce, 
+        data zameldowania + data wymeldowania, 
+        ilość osób (dorośli, dzieci) i ich rozkład (ile pokoi), 
+        przycisk "Szukaj"
+    
+Po naciśnięciu -> wyświetla się lista ofert zawierających:
+
+    Nazwę,
+    Zdjęcie,
+    Mapkę,
+    Opis,
+    Cenę,
+    Przycisk "Rezerwuj"
+
+Po wybraniu oferty -> wyświetla się formularz rezerwacji:
+
+    Imię,
+    Nazwisko,
+    adres e-mail,
+    Kraj/region (potencjalnie cały adres??),
+    numer telefonu (w tym pole do numeru kierunkowego),
+    przycisk "Rezerwuj"
+
