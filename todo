@@ -28,11 +28,18 @@ Po wybraniu oferty -> wyświetla się formularz rezerwacji:
 --------
 
 API:
-    dunno yet
+    jest potrzebne?
 
 --------
 
 Serwer:
 Baza danych (relacyjna - mySQL?) + express + bodyParser + dotenv
 
-    
+    dodać endpointy
+
+    dodać weryfikację poprawności danych? - potencjalnie client-side?
+
+    stworzyć bazę/bazy danych
+
+    stworzyć początkowe dane
+
