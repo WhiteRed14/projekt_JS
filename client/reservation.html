@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reservationStyle.css">
+    <title>Rezerwacja</title>
+</head>
+<body>
+    
+    <div class="grid-container">
+        <div class="logo"><a href="main.html">Booking.com</a></div>
+        <div class="controls">
+          <select name="language" id="language">
+            <option value="pl">Polski</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+    </div>
+    
+    <div class="container-reservation">
+        <h1>Rezerwacja</h1>
+        <form class="rezervatiion-form" acction="#" method="POST">
+            <input type="hidden" id="apartment-id" name="apartment-id">
+
+            <div>
+                <label for="name">Imie:</label>
+                <input type="text" id="name" name="name" placeholder="Twoje Imie" required>
+            </div>
+
+            <div>
+                <label for="surname">Nazwisko:</label>
+                <input type="text" id="surname" name="surname" placeholder="Twoje Nazwisko" required>
+            </div>
+
+            <div>
+                <label for="email">Adres e-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Twoj adres email" required>
+                <p>Na ten email zostanie wysłane potwierdzenie</p>
+            </div>
+            
+            <div>
+                <label for="country">Kraj/region:</label>
+                <select id="country" name="country"required>
+                    <option value="polska">Polska</option>
+                    <option value="francja">Francja</option>
+                    <option value="niemcy">Niemcy</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Numer Telefonu:</label>
+                <select id="county-code" name="country-code">
+                    <option value="PL" selected>PL +48</option>
+                    <option value="FR">FR +33</option>
+                    <option value="GR">GR +49</option>
+                </select>
+                <input type="tel" id="phone" name="phone" placeholder="Numer Telefonu" required>
+                <p>Wymagany przez obiekt w celu zweryfikowania rezerwacji</p>
+            </div>
+            <button type="submit">Zarezerwuj</button>
+        </form>
+    </div>    
+   
+    <script src="script.js"></script>
+</body>
+</html>
