@@ -42,16 +42,17 @@ app.get('/hotels', (req, res) => {
     } else {
         console.log("dane odebranie poprawnie")
     }
-    /*
-    //const query = 'INSERT INTO students (name, surname, address, major, student_group) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [location, checkin, checkout, guests], (err, result) => {
-        if (err) {
-            console.error('Błąd zapisu do bazy danych:', err);
-            return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
-        }
     
-        //res.send(`Dane ${name}, ${surname}, ${address}, ${major}, ${student_group} zostały zapisane pomyślnie!`);
-    });*/
+    const query = 'SELECT * FROM hotels';
+    db.query(query, [location, checkin, checkout, adults, children, rooms], (err, result) => {
+        if (err) {
+            console.error('Błąd:', err);
+            return res.status(500).send('Wystąpił błąd', err);
+        }
+
+        console.log(result);
+        return res.status(200).send(result);
+    });
 });
 
 const PORT = 3000;

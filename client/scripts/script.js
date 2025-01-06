@@ -99,18 +99,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const baseURL = 'http://localhost:3000'
 
-        try {
-            const response = await fetch(`${baseURL}/hotels/?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&rooms=${rooms}&`);
-
+        fetch(`${baseURL}/hotels/?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&rooms=${rooms}&`)
+        .then(response => {
             if (response.ok) {
                 console.log("Dane wysłane pomyślnie!");
                 
             } else {
                 console.error('Błąd przy wysyłaniu danych:', response.statusText);
             }
-        } catch (error) {
+            return response.json()
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch (error => {
             console.error('Błąd sieciowy:', error);
-        }
+        }) 
     });
 });
 
