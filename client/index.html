@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Rezerwuje.com</title>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="logo"><a href="./src/main.html">Rezerwuje.com</a></div>
+        <div class="controls">
+          <select name="language" id="language">
+            <option value="pl">Polski</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <div class="grid_iteam"><a href="./src/main.html"><i class="fa fa-bed" aria-hidden="true"></i> Pobyt</a></div>
+        <div class="grid_iteam"><a href="./src/flights.html"><i class="fa fa-plane" aria-hidden="true"></i> Loty</a></div>
+        <div class="grid_iteam"><a href="./src/packages.html"><i class="fa fa-paper-plane" aria-hidden="true"></i> Lot + Hotel</a></div>
+        <div class="grid_iteam"><a href="./src/car_rentals.html"><i class="fa fa-car" aria-hidden="true"></i> Wynajem Samochodu</a></div>
+        <div class="grid_iteam"><a href="./src/attractions.html"><i class="fa fa-bicycle" aria-hidden="true"></i> Atrakcje</a></div>
+        <div class="grid_iteam"><a href="./src/airport_taxis.html"><i class="fa fa-taxi" aria-hidden="true"></i> Taksówki Lotnistkowe</a></div>
+      </div>
+
+    <div class="search-section">
+        <div class="search-bar">
+          <!-- Szukanie miejscowość -->
+          <select id="location">
+            <option value="" disabled selected>Wybierz miejscowość</option>
+            <option value="warszawa">Warszawa</option>
+            <option value="krakow">Kraków</option>
+            <option value="gdynia">Gdynia</option>
+          </select>
+
+          <!-- data zameldowania i wymeldowania -->
+          <input type="date"  id="checkin" placeholder="Data zameldowania">
+          <input type="date" id="checkout" placeholder="Data wymeldowania">
+          
+          <!-- Liczba osób -->
+          <div class="guests">
+            <div id="guests-sum">2 dorośli · 0 dzieci · 1 pokój</div>
+            <div id="guests-details" class="hidden">
+              <div>
+                <label>Dorośli</label>
+                <button class="btn-decrease" data-type="adults">-</button>
+                <span id="adults-count">2</span>
+                <button class="btn-increase" data-type="adults">+</button>
+              </div>
+              <div>
+                <label>Dzieci</label>
+                <button class="btn-decrease" data-type="children">-</button>
+                <span id="children-count">0</span>
+                <button class="btn-increase" data-type="children">+</button>
+              </div>
+              <div>
+                <label>Pokoje</label>
+                <button class="btn-decrease" data-type="rooms">-</button>
+                <span id="rooms-count">1</span>
+                <button class="btn-increase" data-type="rooms">+</button>
+              </div>
+            </div>
+          </div>
+          <button id="search-button">Szukaj</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <p>Strona główna</p>
+        <h1>Propozycje pobytu</h1>
+        <div id="offers-container"></div>
+    </div>
+
+    <footer>
+        Tekst
+    </footer>
+    
+    <script src="./scripts/script.js"></script>
+</body>
+</html>
