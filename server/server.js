@@ -2,6 +2,7 @@
 const express = require('express'); 
 const bodyParser = require('body-parser'); 
 const mysql = require('mysql2');
+const cors = require('cors');
 require('dotenv').config()
 
 //
@@ -23,6 +24,7 @@ db.connect((err) => {
 //
 
 const app = express();
+app.use(cors()); // Włącz obsługę CORS
 
 app.use(bodyParser.json()); 
 app.use((req, res, next) => { 
@@ -31,7 +33,7 @@ app.use((req, res, next) => {
     next(); 
 });
 
-app.get('/search', (req, res) => {
+app.post('/search', (req, res) => {
     const { location, checkin, checkout, guests } = req.body;
 
     if (!location || !checkin || !checkout || !guests ) {
