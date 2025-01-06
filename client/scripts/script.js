@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const response = await fetch('http://localhost/subpages/stays.html', {
+            const response = await fetch('http://localhost/src/main.html', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 console.log("Dane wysłane pomyślnie!");
-                window.location.href = 'subpages/stays.html';
+                window.location.href = 'subpages/main.html';
             } else {
                 console.error('Błąd przy wysyłaniu danych:', response.statusText);
             }
