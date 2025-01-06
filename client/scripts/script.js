@@ -97,29 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Dzieci:", children);
         console.log("Pokoje: ", rooms);
 
-        const data = {
-            location: location,
-            checkin: checkin,
-            checkout: checkout,
-            guests: {
-                adults: adults,
-                children: children,
-                rooms: rooms
-            }
-        };
+        const baseURL = 'http://localhost:3000'
 
         try {
-            const response = await fetch('http://localhost/src/main.html', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
+            const response = await fetch(`${baseURL}/hotels/?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&rooms=${rooms}&`);
 
             if (response.ok) {
                 console.log("Dane wysłane pomyślnie!");
-                //window.location.href = 'main.html';
+                
             } else {
                 console.error('Błąd przy wysyłaniu danych:', response.statusText);
             }

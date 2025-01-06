@@ -33,22 +33,25 @@ app.use((req, res, next) => {
     next(); 
 });
 
-app.post('/search', (req, res) => {
-    const { location, checkin, checkout, guests } = req.body;
+app.get('/hotels', (req, res) => {
+    //console.log(req.query)
+    const { location, checkin, checkout, adults, children, rooms } = req.query;
 
-    if (!location || !checkin || !checkout || !guests ) {
+    if (!location || !checkin || !checkout || !adults || !children || !rooms ) {
         return res.status(400).send('Wszystkie pola są wymagane!');
+    } else {
+        console.log("dane odebranie poprawnie")
     }
-
+    /*
     //const query = 'INSERT INTO students (name, surname, address, major, student_group) VALUES (?, ?, ?, ?, ?)';
     db.query(query, [location, checkin, checkout, guests], (err, result) => {
-        /*if (err) {
+        if (err) {
             console.error('Błąd zapisu do bazy danych:', err);
             return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
-        }*/
+        }
     
         //res.send(`Dane ${name}, ${surname}, ${address}, ${major}, ${student_group} zostały zapisane pomyślnie!`);
-    });
+    });*/
 });
 
 const PORT = 3000;
