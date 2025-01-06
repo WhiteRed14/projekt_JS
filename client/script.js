@@ -46,12 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(`${type}-count`).textContent = counts[type];
 
         sum.textContent = `${counts.adults} dorośli · ${counts.children} dzieci · ${counts.rooms} pokój/pokoje`;
-    });
-
-    document.addEventListener("click", (event) => {
-        if(!details.contains(event.target) && event.target !== sum){
-            details.classList.add('hidden');
-        }
+        
+        document.addEventListener("click", (event) => {
+            if(!details.contains(event.target) && event.target !== sum){
+                details.classList.add('hidden');
+            }
+        });
     });
 });
 //=====================================
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let checkout = checkoutF.value;
         const guests = guestsSum.value;
 
-        if(!checkin || !checkout) {
+        if(!location || !checkin || !checkout) {
             alert("Prosze uzupełnić wszystkie wymagane pola(lokalizacze oraz daty zameldowania/wymeldowania)")
             return;
         }
