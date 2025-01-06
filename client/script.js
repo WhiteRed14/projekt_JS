@@ -5,8 +5,6 @@ const currentUrl = window.location.href;
 
 links.forEach(link => {
     if (link.href === currentUrl) {
-        console.log(currentUrl)
-        console.log(link.href)
         link.classList.add('active'); 
     }
 });
@@ -27,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         details.classList.toggle('hidden');
     });
 
-    // Obsługa przycisków + i -
+    // Przyciski + i -
     details.addEventListener("click", (event) => {
         const target = event.target;
         const type = target.dataset.type;
@@ -45,5 +43,47 @@ document.addEventListener("DOMContentLoaded", () => {
         // Aktualizuj podsumowanie
         sum.textContent = `${counts.adults} dorośli · ${counts.children} dzieci · ${counts.rooms} pokój/pokoje`;
     });
-})
+
+    document.addEventListener("click", (event) => {
+        if(!details.contains(event.target) && event.target !== sum){
+            details.classList.add('hidden');
+        }
+    });
+});
 //=====================================
+
+
+//=====================================
+//Button szukaj
+
+document.addEventListener("DOMContentLoaded", () => {
+  
+    const searchButton = document.getElementById("search-button");
+    const locationF = document.getElementById("location");
+    const checkinF = document.getElementById("checkin");
+    const checkoutF = document.getElementById("checkout");
+    const guestsSum = document.getElementById("guests-sum");
+
+    searchButton.addEventListener("click", () =>{
+
+        const location = locationF.value;
+        let checkin = checkinF.value;
+        let checkout = checkoutF.value;
+        const guests = guestsSum.value;
+
+        if(!checkin || !checkout) {
+            alert("Prosze uzupełnić wszystkie wymagane pola(lokalizacze oraz daty zameldowania/wymeldowania)")
+            return;
+        }
+        if (checkin > checkout) {
+            const swap = checkin;
+            checkin = checkout;
+            checkout = swap;
+        }
+
+        console.log("Lokalizacja: ", location);
+        console.log("Zameldowanie: ", checkin);
+        console.log("Wymeldowanie: ", checkout);
+        console.log("Gośćie: ", guests);
+    })
+});
