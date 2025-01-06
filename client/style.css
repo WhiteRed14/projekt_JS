@@ -16,6 +16,16 @@ body {
     justify-content: center;
     text-align: center;
 }
+
+footer {
+    background-color: #083c94;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* nawigacja */
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
@@ -46,6 +56,12 @@ body {
     text-align: right;
 }
 
+.controls select{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
 .grid_iteam a {
     color: white;
     text-decoration: none;
@@ -64,18 +80,13 @@ body {
 }
 
 .grid_iteam a.active {
-    border-bottom: 2px solid #feb600;
+    border: 2px solid #feb600;
     border-radius: 30%;
     font-weight: bold;
     color: #feb600; 
 }
 
-.controls select{
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-}
-
+/* wyszukiwanie */
 .search-section {
     display: flex;
     padding: 20px;
@@ -187,10 +198,44 @@ button.btn-decrease:hover, button.btn-increase:hover {
     font-weight: bold;
 }
 
-footer {
-    background-color: #083c94;
-    color: white;
+/* rezerwacja */
+
+.container-reservation {
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.container-reservation h1{
+    font-size: 24px;
     text-align: center;
-    padding: 10px 20px;
+    color: #083c94;
+    margin-bottom: 20px;
+}
+
+.container-reservation form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-reservation form div {
+    margin-bottom: 15px;
+}
+
+.container-reservation label {
     font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.container-reservation form input[type=""],
+.container-reservation form input[type=""],
+.container-reservation form input[type=""],
+.container-reservation form select {
+    font-size: 14px;
+    border: 1px solid ;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
