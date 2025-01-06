@@ -1,8 +1,12 @@
+// import 
 const express = require('express'); 
 const bodyParser = require('body-parser'); 
 const mysql = require('mysql2');
 require('dotenv').config()
 
+//
+
+//łączenie z bazą danych
 const db = mysql.createConnection({ 
     host: process.env.DB_HOSTNAME, // Adres URL/IP serwera
     user: process.env.DB_USER, // Użytkownik MySQL
@@ -16,6 +20,7 @@ db.connect((err) => {
     } 
     console.log('Połączono z bazą danych MySQL.');
     });
+//
 
 const app = express();
 
@@ -26,7 +31,7 @@ app.use((req, res, next) => {
     next(); 
 });
 
-app.post('/submit', (req, res) => {
+app.get('', (req, res) => {
 
 });
 
