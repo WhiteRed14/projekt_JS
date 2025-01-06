@@ -97,35 +97,24 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Dzieci:", children);
         console.log("Pokoje: ", rooms);
 
-        const data = {
-            location: location,
-            checkin: checkin,
-            checkout: checkout,
-            guests: {
-                adults: adults,
-                children: children,
-                rooms: rooms
-            }
-        };
+        const baseURL = 'http://localhost:3000'
 
-        try {
-            const response = await fetch('http://localhost/subpages/stays.html', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-
+        fetch(`${baseURL}/hotels/?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&rooms=${rooms}&`)
+        .then(response => {
             if (response.ok) {
                 console.log("Dane wysłane pomyślnie!");
-                window.location.href = 'subpages/stays.html';
+                
             } else {
                 console.error('Błąd przy wysyłaniu danych:', response.statusText);
             }
-        } catch (error) {
+            return response.json()
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch (error => {
             console.error('Błąd sieciowy:', error);
-        }
+        }) 
     });
 });
 
