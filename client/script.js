@@ -79,14 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const children = childrenCount.innerText;
         const rooms = roomsCount.innerText;
 
-        // if(!location || !checkin || !checkout) {
-        //     alert("Prosze uzupełnić wszystkie wymagane pola(lokalizacze oraz daty zameldowania/wymeldowania)")
-        //     return;
-        // }
+        if(!location || !checkin || !checkout) {
+            alert("Prosze uzupełnić wszystkie wymagane pola(lokalizacze oraz daty zameldowania/wymeldowania)")
+            return;
+        }
         if (checkin > checkout) {
             const swap = checkin;
             checkin = checkout;
             checkout = swap;
+            alert("Data zameldowania została zmieniona z datą wymeldowania, ponieważ data zameldowania była póżniej niż wymeldowania")
         }
 
         console.log("Lokalizacja: ", location);
