@@ -3,7 +3,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll('.grid_iteam a');
     const currentUrl = new URL(window.location.href); 
-
     links.forEach(link => {
         const linkUrl = new URL(link.href); 
 
@@ -66,19 +65,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const locationF = document.getElementById("location");
     const checkinF = document.getElementById("checkin");
     const checkoutF = document.getElementById("checkout");
-    const guestsSum = document.getElementById("guests-sum");
+    const adultsCount = document.getElementById("adults-count");
+    const childrenCount = document.getElementById("children-count");
+    const roomsCount = document.getElementById("rooms-count");
 
-    searchButton.addEventListener("click", () =>{
+    searchButton.addEventListener("click",async () =>{
 
         const location = locationF.value;
         let checkin = checkinF.value;
         let checkout = checkoutF.value;
-        const guests = guestsSum.value;
 
-        if(!location || !checkin || !checkout) {
-            alert("Prosze uzupełnić wszystkie wymagane pola(lokalizacze oraz daty zameldowania/wymeldowania)")
-            return;
-        }
+        const adults = adultsCount.innerText;
+        const children = childrenCount.innerText;
+        const rooms = roomsCount.innerText;
+
+        // if(!location || !checkin || !checkout) {
+        //     alert("Prosze uzupełnić wszystkie wymagane pola(lokalizacze oraz daty zameldowania/wymeldowania)")
+        //     return;
+        // }
         if (checkin > checkout) {
             const swap = checkin;
             checkin = checkout;
@@ -88,16 +92,40 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Lokalizacja: ", location);
         console.log("Zameldowanie: ", checkin);
         console.log("Wymeldowanie: ", checkout);
-        console.log("Gośćie: ", guests);
+        console.log("Dorośli: ", adults);
+        console.log("Dzieci:", children);
+        console.log("Pokoje: ", rooms);
 
-        const queryParams = new URLSearchParams({
-            location,
-            checkin,
-            checkout,
-            guests,
-        }).toString();
+        const data = {
+            location: location,
+            checkin: checkin,
+            checkout: checkout,
+            guests: {
+                adults: adults,
+                children: children,
+                rooms: rooms
+            }
+        };
 
-        window.location.href = `subpages/stays.html?${queryParams}`;
-    })
+        try {
+            const response = await fetch('subpages/stays.html', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                console.log("Dane wysłane pomyślnie!");
+                window.location.href = 'subpages/stays.html';
+            } else {
+                console.error('Błąd przy wysyłaniu danych:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Błąd sieciowy:', error);
+        }
+    });
 });
 
+//===========================================

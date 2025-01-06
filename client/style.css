@@ -235,9 +235,9 @@ button.btn-decrease:hover, button.btn-increase:hover {
 .container-reservation form input[type=""],
 .container-reservation form select {
     font-size: 14px;
-    border: 1px solid ;
     border-radius: 5px;
     box-sizing: border-box;
+    
 }
 
 .container-reservation form p {
@@ -254,7 +254,6 @@ button.btn-decrease:hover, button.btn-increase:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
     margin-top: 10px;
 }
 
