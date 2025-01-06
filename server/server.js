@@ -33,7 +33,7 @@ app.use((req, res, next) => {
     next(); 
 });
 
-app.get('/search', (req, res) => {
+app.post('/search', (req, res) => {
     const { location, checkin, checkout, guests } = req.body;
 
     if (!location || !checkin || !checkout || !guests ) {

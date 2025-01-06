@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const response = await fetch('subpages/stays.html', {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
