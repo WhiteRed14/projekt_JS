@@ -31,8 +31,22 @@ app.use((req, res, next) => {
     next(); 
 });
 
-app.get('', (req, res) => {
+app.get('/search', (req, res) => {
+    const { location, checkin, checkout, guests } = req.body;
 
+    if (!location || !checkin || !checkout || !guests ) {
+        return res.status(400).send('Wszystkie pola są wymagane!');
+    }
+
+    //const query = 'INSERT INTO students (name, surname, address, major, student_group) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [location, checkin, checkout, guests], (err, result) => {
+        /*if (err) {
+            console.error('Błąd zapisu do bazy danych:', err);
+            return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
+        }*/
+    
+        //res.send(`Dane ${name}, ${surname}, ${address}, ${major}, ${student_group} zostały zapisane pomyślnie!`);
+    });
 });
 
 const PORT = 3000;
