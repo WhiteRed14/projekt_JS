@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 console.log("Dane wysłane pomyślnie!");
-                window.location.href = 'src/main.html';
+                //window.location.href = 'main.html';
             } else {
                 console.error('Błąd przy wysyłaniu danych:', response.statusText);
             }
