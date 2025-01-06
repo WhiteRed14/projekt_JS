@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const response = await fetch('subpages/stays.html', {
+            const response = await fetch('http://localhost/subpages/stays.html', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
