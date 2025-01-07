@@ -127,29 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //================================
 //Wyswietlanie listy hoteli
-function displayResults(data) {
-    const resultsSection = document.getElementById("results");
-    resultsSection.innerHTML = ""; // Wyczyść poprzednie wyniki
-    
-    if (data.length === 0) {
-        resultsSection.innerHTML = "<p>Nie znaleziono żadnych apartamentów dla podanych kryteriów.</p>";
-        return;
-    }
-    
-    data.forEach(apartment => {
-        const apartmentElement = document.createElement("div");
-        apartmentElement.className = "apartment-card";
-        apartmentElement.innerHTML = `
-        <img src="${apartment.image}" alt="${apartment.name}" class="apartment-image">
-        <h3>${apartment.name}</h3>
-        <button class="details-btn" data-id="${apartment.id}">Szczegóły</button>
-        `;
-        resultsSection.appendChild(apartmentElement);
-    });
-    
-    addDetailsListeners(); // Dodaj event listener na przyciski "Szczegóły"
-}
-
 // Przykładowe dane
 document.addEventListener("DOMContentLoaded", () => {
     const mockData = [
@@ -174,7 +151,30 @@ document.addEventListener("DOMContentLoaded", () => {
     displayResults(mockData);
 });
 
-//===================
+function displayResults(data) {
+    const resultsSection = document.getElementById("results");
+    resultsSection.innerHTML = ""; // Wyczyść poprzednie wyniki
+    
+    if (data.length === 0) {
+        resultsSection.innerHTML = "<p>Nie znaleziono żadnych apartamentów dla podanych kryteriów.</p>";
+        return;
+    }
+    
+    data.forEach(apartment => {
+        const apartmentElement = document.createElement("div");
+        apartmentElement.className = "apartment-card";
+        apartmentElement.innerHTML = `
+        <img src="${apartment.image}" alt="${apartment.name}" class="apartment-image">
+        <h3>${apartment.name}</h3>
+        <button class="details-btn" data-id="${apartment.id}">Szczegóły</button>
+        `;
+        resultsSection.appendChild(apartmentElement);
+    });
+    
+    addDetailsListeners();
+}
+
+
 //przycisk szczegółów
 
 function addDetailsListeners() {
@@ -182,7 +182,7 @@ function addDetailsListeners() {
     detailButtons.forEach(button => {
         button.addEventListener("click", () => {
             const apartmentId = button.dataset.id;
-            window.location.href = `/apartment.html?id=${apartmentId}`; // Przekierowanie do strony szczegółów
+            window.location.href = `apartment.html?id=${apartmentId}`; // Przekierowanie do strony szczegółów
         });
     });
 }

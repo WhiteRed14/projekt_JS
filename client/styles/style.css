@@ -326,9 +326,48 @@ button.btn-decrease:hover, button.btn-increase:hover {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .details-btn:hover {
     background-color: #005999;
+}
+
+
+/* strona apartamemt.html */
+
+#apartment-details {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#apartment-details img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#apartment-details h2 {
+    font-size: 24px;
+    color: #083c94;
+}
+
+#apartment-details p {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+}
+
+#reserve-btn {
+    background-color: #feb600;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reserve-btn:hover {
+    background-color: #f0a500;
 }
