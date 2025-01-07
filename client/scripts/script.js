@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         children: 0,
         rooms:1,
     };
-
+    //chowanie search-bar
     sum.addEventListener("click", () => {
         details.classList.toggle('hidden');
     });
@@ -89,6 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
             checkout = swap;
             alert("Data zameldowania została zmieniona z datą wymeldowania, ponieważ data zameldowania była póżniej niż wymeldowania")
         }
+        if (adults <= 0 || rooms <= 0) {
+            alert("Liczba dorosłych i pokoi musi być większa od zera.");
+            return;
+        }
 
         console.log("Lokalizacja: ", location);
         console.log("Zameldowanie: ", checkin);
@@ -119,3 +123,66 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //===========================================
+
+
+//================================
+//Wyswietlanie listy hoteli
+function displayResults(data) {
+    const resultsSection = document.getElementById("results");
+    resultsSection.innerHTML = ""; // Wyczyść poprzednie wyniki
+    
+    if (data.length === 0) {
+        resultsSection.innerHTML = "<p>Nie znaleziono żadnych apartamentów dla podanych kryteriów.</p>";
+        return;
+    }
+    
+    data.forEach(apartment => {
+        const apartmentElement = document.createElement("div");
+        apartmentElement.className = "apartment-card";
+        apartmentElement.innerHTML = `
+        <img src="${apartment.image}" alt="${apartment.name}" class="apartment-image">
+        <h3>${apartment.name}</h3>
+        <button class="details-btn" data-id="${apartment.id}">Szczegóły</button>
+        `;
+        resultsSection.appendChild(apartmentElement);
+    });
+    
+    addDetailsListeners(); // Dodaj event listener na przyciski "Szczegóły"
+}
+
+// Przykładowe dane
+document.addEventListener("DOMContentLoaded", () => {
+    const mockData = [
+        {
+            "id": 1,
+            "name": "Sheraton-sopot",
+            "image": "../../server/hotel_img/sheraton-sopot.jpg"
+        },
+        {
+            "id": 2,
+            "name": "testowa nazwa 1",
+            "image": "../../server/hotel_img/test1.jpg"
+        },
+        {
+            "id": 3,
+            "name": "2 nazwa testowa",
+            "image": "../../server/hotel_img/test2.jpg"
+        }
+    ];
+
+    // Wyświetl wyniki na podstawie przykładowych danych
+    displayResults(mockData);
+});
+
+//===================
+//przycisk szczegółów
+
+function addDetailsListeners() {
+    const detailButtons = document.querySelectorAll(".details-btn");
+    detailButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const apartmentId = button.dataset.id;
+            window.location.href = `/apartment.html?id=${apartmentId}`; // Przekierowanie do strony szczegółów
+        });
+    });
+}
