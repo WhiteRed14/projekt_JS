@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
-    // Wyświetl wyniki na podstawie przykładowych danych
+    // Wyświetla wyniki
     displayResults(mockData);
 });
 

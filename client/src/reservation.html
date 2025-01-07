@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/style.css">
     <title>Rezerwacja</title>
 </head>
 <body>
     
     <div class="grid-container">
-        <div class="logo"><a href="main.html">Booking.com</a></div>
+        <div class="logo"><a href="main.html">Rezerwuje.com</a></div>
         <div class="controls">
           <select name="language" id="language">
             <option value="pl">Polski</option>
@@ -21,8 +21,6 @@
     <div class="container-reservation">
         <h1>Rezerwacja</h1>
         <form class="rezervatiion-form" acction="#" method="POST">
-            <input type="hidden" id="apartment-id" name="apartment-id">
-
             <div>
                 <label for="name">Imie:</label>
                 <input type="text" id="name" name="name" placeholder="Twoje Imie" required>
@@ -58,10 +56,20 @@
                 <input type="tel" id="phone" name="phone" placeholder="Numer Telefonu" required>
                 <p>Wymagany przez obiekt w celu zweryfikowania rezerwacji</p>
             </div>
+
+            <div>
+                <label for="checkin">Data zameldowania:</label>
+                <input type="date" id="checkin" name="checkin" required>
+            </div>
+    
+            <div>
+                <label for="checkout">Data wymeldowania:</label>
+                <input type="date" id="checkout" name="checkout" required>
+            </div>
             <button type="submit">Zarezerwuj</button>
         </form>
     </div>    
    
-    <script src="script.js"></script>
+    <script src="../scripts/reservation.js"></script>
 </body>
 </html>
