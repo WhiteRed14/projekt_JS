@@ -153,13 +153,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function displayResults(data) {
     const resultsSection = document.getElementById("results");
-    resultsSection.innerHTML = ""; // Wyczyść poprzednie wyniki
+    resultsSection.innerHTML = ""; // Zeruje poprzednie wyniki
     
     if (data.length === 0) {
         resultsSection.innerHTML = "<p>Nie znaleziono żadnych apartamentów dla podanych kryteriów.</p>";
         return;
     }
-    
+    //Wyświetla Zdjcie, nazwe i potrzebuje ID danego apartamentu(przechodzi na 
+    // szczegółową strone apartment.html?id="(odpowiednie ID)")
+    // chechin i chcekout pominąłem specjalnie, klient podaje jeszcze raz je w formularrzu rezerwacji
     data.forEach(apartment => {
         const apartmentElement = document.createElement("div");
         apartmentElement.className = "apartment-card";
