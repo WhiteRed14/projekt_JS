@@ -28,6 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
     sum.addEventListener("click", () => {
         details.classList.toggle('hidden');
     });
+    document.addEventListener("click", (event) => {
+        if(!details.contains(event.target) && event.target !== sum){
+            details.classList.add('hidden');
+        }
+    });
 
     // Przyciski + i -
     details.addEventListener("click", (event) => {
@@ -46,11 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         sum.textContent = `${counts.adults} dorośli · ${counts.children} dzieci · ${counts.rooms} pokój/pokoje`;
         
-        document.addEventListener("click", (event) => {
-            if(!details.contains(event.target) && event.target !== sum){
-                details.classList.add('hidden');
-            }
-        });
     });
 });
 //=====================================
