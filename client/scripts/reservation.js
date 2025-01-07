@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Pobierz ID apartamentu z URL
+    //ID apartamentu z URL
     const params = new URLSearchParams(window.location.search);
     const apartmentId = params.get("id");
 

@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    //Przykładowe dane jakie może dostawać z serwera
+    // (Chyba taka może być tabela, ale może o czymś nie pomyślałem)
     const mockApartment = [
         {
             "id": 1,
@@ -43,13 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const apartmentId = parseInt(params.get("id")); // Pobierz id i zamień na liczbę  
     console.log(apartmentId);
 
-    // Znajdź apartament z opdowiednim ID
+    // Znajdź apartament z opdowiednim ID(tu bedzie pobierał z 
+    // serwera ale narazie działa na przykłądowych danych)
     const apartment = mockApartment.find(ap => ap.id === apartmentId);
     console.log(apartment);
+
 
     displayApartmentDetails(apartment);
 });
 
+
+// Wyświetlenie wszystkiech danych i przycisk do przeniesienia na formularz rezerwacji
 function displayApartmentDetails(apartment) {
 
     const detailsSection = document.getElementById("apartment-details");
