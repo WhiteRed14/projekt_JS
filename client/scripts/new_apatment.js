@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData(reservationForm);
         let reservationData = Object.fromEntries(formData.entries());
 
+        //Zmiana na number
         reservationData.children = Number(reservationData.children);
         reservationData.adults = Number(reservationData.adults);
         reservationData.rooms = Number(reservationData.rooms);
