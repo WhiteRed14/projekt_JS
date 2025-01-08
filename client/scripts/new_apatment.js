@@ -8,9 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Pobierz dane z formularza
         const formData = new FormData(reservationForm);
-        const reservationData = Object.fromEntries(formData.entries());
+        let reservationData = Object.fromEntries(formData.entries());
 
-        
+        reservationData.children = Number(reservationData.children);
+        reservationData.adults = Number(reservationData.adults);
+        reservationData.rooms = Number(reservationData.rooms);
+        reservationData.price = Number(reservationData.price);
+
         console.log("Wysłane dane:", reservationData);
     });
 });
