@@ -56,5 +56,5 @@ app.get('/hotels', (req, res) => {
 });
 
 
-const PORT = 3000;
+const PORT = 2137;
 app.listen(PORT, () => {console.log(`Serwer działa na http://${process.env.DB_HOSTNAME}:${PORT}`); });
