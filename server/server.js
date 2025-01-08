@@ -55,6 +55,25 @@ app.get('/hotels', (req, res) => {
     });
 });
 
+app.post('/submit', (req, res) => {
+
+    const { name, img, description, price, rooms, adults, children, lat, lon, city } = req.body;
+
+    if (!name || !img || !description || !price || !rooms || !adults || !children || !lat || !lon || !city) {
+        return res.status(400).send('Wszystkie pola są wymagane!');
+    }
+
+    const query = 'INSERT INTO hotels (Name, Img, Description, Price, Rooms, Adults, Children, Lat, Lon, City) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [name, img, description, price, rooms, adults, children, lat, lon, city], (err, result) => {
+        if (err) {
+            console.error('Błąd zapisu do bazy danych:', err);
+            return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
+        }
+    
+        res.send(`Dane ${name}, ${img}, ${description}, ${price}, ${rooms}, ${adults}, ${children}, ${lat}, ${lon}, ${city} zostały zapisane pomyślnie!`);
+    });
+});
+
 
 const PORT = 3000;
 app.listen(PORT, () => {console.log(`Serwer działa na http://${process.env.DB_HOSTNAME}:${PORT}`); });
