@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
             "adults": 4,
             "children": 2,
             "latitude": 54.4466,
-            "longitude": 18.569228
+            "longitude": 18.569228,
+            "city": "krakow"
         },
         {
             "id": 2,
@@ -24,7 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
             "adults": 2,
             "children": 3,
             "latitude": 54.444741,
-            "longitude": 18.554363
+            "longitude": 18.554363,
+            "city": "gdynia"
         },
         {
             "id": 3,
@@ -36,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
             "adults": 1,
             "children": 0,
             "latitude": 54.467854,
-            "longitude": 18.504466
+            "longitude": 18.504466,
+            "city": "warszawa"
         }
     ];
 
