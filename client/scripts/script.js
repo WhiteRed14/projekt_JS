@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Dzieci:", children);
         console.log("Pokoje: ", rooms);
 
-        const baseURL = 'http://localhost:3000'
+        const baseURL = 'http://94.172.254.196:3000'
 
         fetch(`${baseURL}/hotels/?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&rooms=${rooms}&`)
         .then(response => {
