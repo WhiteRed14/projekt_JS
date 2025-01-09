@@ -78,12 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        console.log("Lokalizacja: ", location);
-        console.log("Zameldowanie: ", checkin);
-        console.log("Wymeldowanie: ", checkout);
-        console.log("Dorośli: ", adults);
-        console.log("Dzieci:", children);
-        console.log("Pokoje: ", rooms);
+        // console.log("Lokalizacja: ", location);
+        // console.log("Zameldowanie: ", checkin);
+        // console.log("Wymeldowanie: ", checkout);
+        // console.log("Dorośli: ", adults);
+        // console.log("Dzieci:", children);
+        // console.log("Pokoje: ", rooms);
 
         const baseURL = 'http://94.172.254.196:3000'
 
@@ -98,42 +98,40 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json()
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             displayResults(data);
         })
         .catch (error => {
             console.error('Błąd sieciowy:', error);
         }) 
-        
-
     });
 });
 
-        //Wyświetlnie wyników
-        function displayResults(data) {
-            const resultsSection = document.getElementById("results");
-            resultsSection.innerHTML = ""; // Zeruje poprzednie wyniki
-            
-            if (data.length === 0) {
-                resultsSection.innerHTML = "<p>Nie znaleziono żadnych apartamentów dla podanych kryteriów.</p>";
-                return;
-            }
+//Wyświetlnie wyników
+function displayResults(data) {
+    const resultsSection = document.getElementById("results");
+    resultsSection.innerHTML = ""; // Zeruje poprzednie wyniki
+    
+    if (data.length === 0) {
+        resultsSection.innerHTML = "<p>Nie znaleziono żadnych apartamentów dla podanych kryteriów.</p>";
+        return;
+    }
             //Wyświetla Zdjcie, nazwe i potrzebuje ID danego apartamentu(przechodzi na 
             // szczegółową strone apartment.html?id="(odpowiednie ID)")
             // chechin i chcekout pominąłem specjalnie, klient podaje jeszcze raz je w formularrzu rezerwacji
-            data.forEach(apartment => {
-                const apartmentElement = document.createElement("div");
-                apartmentElement.className = "apartment-card";
-                apartmentElement.innerHTML = `
-                <img src="../../server/hotel_img/${apartment.Img}" alt="${apartment.Name}" class="apartment-image">
-                <h3>${apartment.Name}</h3>
-                <button class="details-btn" data-id="${apartment.Id}">Szczegóły</button>
-                `;
-                resultsSection.appendChild(apartmentElement);
-            });
+    data.forEach(apartment => {
+        const apartmentElement = document.createElement("div");
+        apartmentElement.className = "apartment-card";
+        apartmentElement.innerHTML = `
+        <img src="../../server/hotel_img/${apartment.Img}" alt="${apartment.Name}" class="apartment-image">
+        <h3>${apartment.Name}</h3>
+        <button class="details-btn" data-id="${apartment.Id}">Szczegóły</button>
+        `;
+        resultsSection.appendChild(apartmentElement);
+    });
             
-            addDetailsListeners();
-        }
+    addDetailsListeners();
+}
 
 //przycisk szczegółów
 
@@ -142,7 +140,7 @@ function addDetailsListeners() {
     detailButtons.forEach(button => {
         button.addEventListener("click", () => {
             const apartmentId = button.dataset.id;
-            window.location.href = `apartment.html?id=${apartmentId}`; // Przekierowanie do strony szczegółów
+            window.location.href = `apartment.html?id=${apartmentId}&checkin=${checkin}&checkout=${checkout}`; // Przekierowanie do strony szczegółów
         });
     });
 }
