@@ -86,7 +86,7 @@ app.post('/newReservation', (req, res) => {
     console.log(req.body)
     const { name, surname, email, country, country_code, phone, hotel_id, checkin, checkout } = req.body;
 
-    console.log(!name, !surname, !email,!country, !country_code, !phone, !hotel_id, !checkin, !checkout)
+    console.log(name, surname, email, country, country_code, phone, hotel_id, checkin, checkout)
     
     if (!name || !surname || !email || !country || !country_code || !phone || !hotel_id || !checkin || !checkout) {
         return res.status(400).send('Wszystkie pola są wymagane!');
