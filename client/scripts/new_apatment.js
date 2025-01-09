@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' }, 
             body: JSON.stringify(reservationData) }); 
-            const result = await response.text(); 
-            alert(result);
+        const result = await response.text(); 
+        alert(result);
     });
 });
 

@@ -14,11 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Pobierz dane z formularza
         const formData = new FormData(reservationForm);
-        formData.append('Hotel-Id', apartmentId);
-        formData.append('Checkin', checkin);
-        formData.append('Checkout', checkout);
+        formData.append('hotel_Id', apartmentId);
+        formData.append('checkin', checkin);
+        formData.append('checkout', checkout);
         const reservationData = Object.fromEntries(formData.entries());
         
         console.log("Wysłane dane:", reservationData);
+
+        const response = await fetch('http://94.172.254.196:3000/newReservation', { 
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify(reservationData) }); 
+        const result = await response.text(); 
+        alert(result);
     });
 });
