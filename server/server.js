@@ -42,7 +42,7 @@ app.get('/hotels', (req, res) => {
     if (!location || !checkin || !checkout || !adults || !children || !rooms ) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     } else {
-        console.log("dane odebranie poprawnie")
+        console.log("dane odebrane poprawnie")
     }
     
     const query = `SELECT Id, Name, Img FROM hotels WHERE (City = ?) AND (Rooms >= ?) AND (Adults >= ?) AND (Children >= ?)`;
@@ -58,19 +58,18 @@ app.get('/hotels', (req, res) => {
 });
 
 // returning all data regarding a hotel offer
-/*
-app.get('/hotels', (req, res) => {
+app.get('/hotelData', (req, res) => {
     //console.log(req.query)
-    const { location, checkin, checkout, adults, children, rooms } = req.query;
+    const id = req.query;
 
-    if (!location || !checkin || !checkout || !adults || !children || !rooms ) {
+    if (!id ) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     } else {
-        console.log("dane odebranie poprawnie")
+        console.log("dane odebrane poprawnie")
     }
     
-    const query = `SELECT Id, Name, Img FROM hotels WHERE (City = ?) AND (Rooms >= ?) AND (Adults >= ?) AND (Children >= ?)`;
-    db.query(query, [location, rooms, adults, children, checkin, checkout], (err, result) => {
+    const query = `SELECT * FROM hotels WHERE (Id = ?)`;
+    db.query(query, [id], (err, result) => {
         if (err) {
             console.error('Błąd:', err);
             return res.status(500).send('Wystąpił błąd', err);
@@ -80,10 +79,29 @@ app.get('/hotels', (req, res) => {
         return res.status(200).send(result);
     });
 });
-*/
+
+// adding new reservations to the database
+app.post('/newReservation', (req, res) => {
+
+    const { name, img, description, price, rooms, adults, children, lat, lon, city } = req.body;
+
+    if (!name || !img || !description || !price || !rooms || !adults || !children || !lat || !lon || !city) {
+        return res.status(400).send('Wszystkie pola są wymagane!');
+    }
+
+    const query = 'INSERT INTO hotels (Name, Img, Description, Price, Rooms, Adults, Children, Lat, Lon, City) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [name, img, description, price, rooms, adults, children, lat, lon, city], (err, result) => {
+        if (err) {
+            console.error('Błąd zapisu do bazy danych:', err);
+            return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
+        }
+        console.log(`Dane ${name}, ${img}, ${description}, ${price}, ${rooms}, ${adults}, ${children}, ${lat}, ${lon}, ${city} zostały dodane do bazy`)
+        res.send(`Dane ${name}, ${img}, ${description}, ${price}, ${rooms}, ${adults}, ${children}, ${lat}, ${lon}, ${city} zostały zapisane pomyślnie!`);
+    });
+});
 
 // posting new apartments and adding them to the database -- not available from main.html
-app.post('/submit', (req, res) => {
+app.post('/newHotel', (req, res) => {
 
     const { name, img, description, price, rooms, adults, children, lat, lon, city } = req.body;
 
