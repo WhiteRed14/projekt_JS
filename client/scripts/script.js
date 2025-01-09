@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(data => {
             // console.log(data);
-            console.log(chcekin);
+            console.log(checkin);
             displayResults(data, checkin, checkout);
         })
         .catch (error => {
@@ -141,7 +141,6 @@ function addDetailsListeners(checkin, checkout) {
     detailButtons.forEach(button => {
         button.addEventListener("click", () => {
             const apartmentId = button.dataset.id;
-            console.log(checkin);
 
             window.location.href = `apartment.html?id=${apartmentId}&checkin=${checkin}&checkout=${checkout}`; // Przekierowanie do strony szczegółów
         });
