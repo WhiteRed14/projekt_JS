@@ -106,6 +106,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }) 
         
 
+        function displayResults(data) {
+            const resultsSection = document.getElementById("results");
+            resultsSection.innerHTML = ""; // Zeruje poprzednie wyniki
+            
+            if (data.length === 0) {
+                resultsSection.innerHTML = "<p>Nie znaleziono żadnych apartamentów dla podanych kryteriów.</p>";
+                return;
+            }
+            //Wyświetla Zdjcie, nazwe i potrzebuje ID danego apartamentu(przechodzi na 
+            // szczegółową strone apartment.html?id="(odpowiednie ID)")
+            // chechin i chcekout pominąłem specjalnie, klient podaje jeszcze raz je w formularrzu rezerwacji
+            data.forEach(apartment => {
+                const apartmentElement = document.createElement("div");
+                apartmentElement.className = "apartment-card";
+                apartmentElement.innerHTML = `
+                <img src="../../server/hotel_img/${apartment.image}" alt="${apartment.name}" class="apartment-image">
+                <h3>${apartment.name}</h3>
+                <button class="details-btn" data-id="${apartment.id}">Szczegóły</button>
+                `;
+                resultsSection.appendChild(apartmentElement);
+            });
+            
+            addDetailsListeners();
+        }
     });
 });
 
@@ -135,30 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ];
     
     // Wyświetla wyniki
-    function displayResults(data) {
-        const resultsSection = document.getElementById("results");
-        resultsSection.innerHTML = ""; // Zeruje poprzednie wyniki
-        
-        if (data.length === 0) {
-            resultsSection.innerHTML = "<p>Nie znaleziono żadnych apartamentów dla podanych kryteriów.</p>";
-            return;
-        }
-        //Wyświetla Zdjcie, nazwe i potrzebuje ID danego apartamentu(przechodzi na 
-        // szczegółową strone apartment.html?id="(odpowiednie ID)")
-        // chechin i chcekout pominąłem specjalnie, klient podaje jeszcze raz je w formularrzu rezerwacji
-        data.forEach(apartment => {
-            const apartmentElement = document.createElement("div");
-            apartmentElement.className = "apartment-card";
-            apartmentElement.innerHTML = `
-            <img src="../../server/hotel_img/${apartment.image}" alt="${apartment.name}" class="apartment-image">
-            <h3>${apartment.name}</h3>
-            <button class="details-btn" data-id="${apartment.id}">Szczegóły</button>
-            `;
-            resultsSection.appendChild(apartmentElement);
-        });
-        
-        addDetailsListeners();
-    }
+
 });
 
 
