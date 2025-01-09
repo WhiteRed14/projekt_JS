@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json()
         })
         .then(data => {
+            console.log(data);
             displayResults(data);
         })
         .catch (error => {
@@ -151,7 +152,7 @@ function displayResults(data) {
         const apartmentElement = document.createElement("div");
         apartmentElement.className = "apartment-card";
         apartmentElement.innerHTML = `
-        <img src="${apartment.image}" alt="${apartment.name}" class="apartment-image">
+        <img src="../../server/hotel_img/${apartment.image}" alt="${apartment.name}" class="apartment-image">
         <h3>${apartment.name}</h3>
         <button class="details-btn" data-id="${apartment.id}">Szczegóły</button>
         `;
