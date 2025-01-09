@@ -135,7 +135,7 @@ function displayResults(data, checkin, checkout) {
 
 //przycisk szczegółów
 
-function addDetailsListeners() {
+function addDetailsListeners(chcekin, chcekout) {
     const detailButtons = document.querySelectorAll(".details-btn");
     detailButtons.forEach(button => {
         button.addEventListener("click", () => {
