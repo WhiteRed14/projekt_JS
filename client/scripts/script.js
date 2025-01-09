@@ -106,6 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }) 
         
 
+    });
+});
+
+        //Wyświetlnie wyników
         function displayResults(data) {
             const resultsSection = document.getElementById("results");
             resultsSection.innerHTML = ""; // Zeruje poprzednie wyniki
@@ -130,39 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
             
             addDetailsListeners();
         }
-    });
-});
-
-//===========================================
-
-
-//================================
-//Wyswietlanie listy hoteli
-// Przykładowe dane
-document.addEventListener("DOMContentLoaded", () => {
-    // const mockData = [
-    //     {
-    //         "id": 1,
-    //         "name": "Sheraton-sopot",
-    //         "image": "../../server/hotel_img/sheraton-sopot.jpg"
-    //     },
-    //     {
-    //         "id": 2,
-    //         "name": "testowa nazwa 1",
-    //         "image": "../../server/hotel_img/test1.jpg"
-    //     },
-    //     {
-    //         "id": 3,
-    //         "name": "2 nazwa testowa",
-    //         "image": "../../server/hotel_img/test2.jpg"
-    //     }
-    // ];
-    
-    // Wyświetla wyniki
-
-});
-
-
 
 //przycisk szczegółów
 
