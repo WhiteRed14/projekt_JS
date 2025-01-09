@@ -93,7 +93,7 @@ app.post('/newReservation', (req, res) => {
     }
 
     const query = 'INSERT INTO reservations (Checkin, Checkout, Country, Country_Code, Email, Name, Phone, Surname, Hotel_Id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [name, surname, email, country, country_code, phone, hotel_Id, checkin, checkout], (err, result) => {
+    db.query(query, [checkin, checkout, country, country_code, email, name, phone, surname, hotel_Id], (err, result) => {
         if (err) {
             console.error('Błąd zapisu do bazy danych:', err);
             return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
