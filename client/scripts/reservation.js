@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     //ID apartamentu z URL
     const params = new URLSearchParams(window.location.search);
     const apartmentId = params.get("id");
-    const chcekin = params.get("chcekin");
-    const chcekout = params.get("chcekout");
+    const checkin = params.get("checkin");
+    const checkout = params.get("checkout");
 
 
     // Obsługa wysyłania formularza
@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Pobierz dane z formularza
         const formData = new FormData(reservationForm);
         formData.append('Hotel-Id', apartmentId);
-        formData.append('Checkin', chcekin);
-        formData.append('Checkout', chcekout);
+        formData.append('Checkin', checkin);
+        formData.append('Checkout', checkout);
         const reservationData = Object.fromEntries(formData.entries());
         
         console.log("Wysłane dane:", reservationData);
