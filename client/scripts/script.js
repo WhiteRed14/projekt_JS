@@ -136,12 +136,12 @@ function displayResults(data, checkin, checkout) {
 
 //przycisk szczegółów
 
-function addDetailsListeners(chcekin, chcekout) {
+function addDetailsListeners(checkin, checkout) {
     const detailButtons = document.querySelectorAll(".details-btn");
     detailButtons.forEach(button => {
         button.addEventListener("click", () => {
             const apartmentId = button.dataset.id;
-            console.log(chcekin);
+            console.log(checkin);
 
             window.location.href = `apartment.html?id=${apartmentId}&checkin=${checkin}&checkout=${checkout}`; // Przekierowanie do strony szczegółów
         });
