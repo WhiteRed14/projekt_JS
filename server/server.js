@@ -83,8 +83,9 @@ app.get('/hotelData', (req, res) => {
 // adding new reservations to the database
 app.post('/newReservation', (req, res) => {
 
+    console.log(req.body)
     const { name, surname, email, country, country_code, phone, hotel_id, checkin, checkout } = req.body;
-
+    
     if (!name || !surname || !email || !country || !country_code || !phone || !hotel_id || !checkin || !checkout) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     }
