@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log(reservationData);
         
-        const response = await fetch('http://94.172.254.196:3000/submit', { 
+        const response = await fetch('http://94.172.254.196:3000/newHotel', { 
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' }, 
             body: JSON.stringify(reservationData) }); 

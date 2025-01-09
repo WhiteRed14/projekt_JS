@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Pobierz dane z formularza
         const formData = new FormData(reservationForm);
         formData.append('Hotel-Id', apartmentId);
+        formData.append('Checkin', chcekin);
+        formData.append('Checkout', chcekout);
         const reservationData = Object.fromEntries(formData.entries());
         
         console.log("Wysłane dane:", reservationData);
