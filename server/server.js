@@ -90,6 +90,8 @@ app.post('/newReservation', (req, res) => {
         return res.status(400).send('Wszystkie pola są wymagane!');
     }
 
+    console.log(!name, !surname, !email,!country, !country_code, !phone, !hotel_id, !checkin, !checkout)
+
     const query = 'INSERT INTO reservations (Checkin, Checkout, Country, Country-Code, Email, Name, Phone, Surname, Hotel-Id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
     db.query(query, [name, surname, email, country, country_code, phone, hotel_id, checkin, checkout], (err, result) => {
         if (err) {
