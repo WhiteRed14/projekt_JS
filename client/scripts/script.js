@@ -98,11 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json()
         })
         .then(data => {
-            console.log(data);
+            displayResults(mockData);
         })
         .catch (error => {
             console.error('Błąd sieciowy:', error);
         }) 
+        
+
     });
 });
 
@@ -113,26 +115,25 @@ document.addEventListener("DOMContentLoaded", () => {
 //Wyswietlanie listy hoteli
 // Przykładowe dane
 document.addEventListener("DOMContentLoaded", () => {
-    const mockData = [
-        {
-            "id": 1,
-            "name": "Sheraton-sopot",
-            "image": "../../server/hotel_img/sheraton-sopot.jpg"
-        },
-        {
-            "id": 2,
-            "name": "testowa nazwa 1",
-            "image": "../../server/hotel_img/test1.jpg"
-        },
-        {
-            "id": 3,
-            "name": "2 nazwa testowa",
-            "image": "../../server/hotel_img/test2.jpg"
-        }
-    ];
+    // const mockData = [
+    //     {
+    //         "id": 1,
+    //         "name": "Sheraton-sopot",
+    //         "image": "../../server/hotel_img/sheraton-sopot.jpg"
+    //     },
+    //     {
+    //         "id": 2,
+    //         "name": "testowa nazwa 1",
+    //         "image": "../../server/hotel_img/test1.jpg"
+    //     },
+    //     {
+    //         "id": 3,
+    //         "name": "2 nazwa testowa",
+    //         "image": "../../server/hotel_img/test2.jpg"
+    //     }
+    // ];
 
     // Wyświetla wyniki
-    displayResults(mockData);
 });
 
 function displayResults(data) {
