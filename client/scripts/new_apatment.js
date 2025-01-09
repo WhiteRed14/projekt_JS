@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         reservationData.rooms = Number(reservationData.rooms);
         reservationData.price = Number(reservationData.price);
 
+        console.log(reservationData);
         
         const response = await fetch('http://94.172.254.196:3000/submit', { 
             method: 'POST', 
