@@ -87,8 +87,8 @@ function displayApartmentDetails(apartment) {
     //Przycisk do rezerwacji
     document.getElementById("reserve-btn").addEventListener("click", () => {
         const apartmentId = new URLSearchParams(window.location.search).get("id");
-        const chcekin = new URLSearchParams(window.location.search).get("chcekin");
-        const chcekout = new URLSearchParams(window.location.search).get("chcekout");
+        const checkin = new URLSearchParams(window.location.search).get("chcekin");
+        const checkout = new URLSearchParams(window.location.search).get("chcekout");
 
 
         window.location.href = `reservation.html?id=${apartmentId}&checkin=${checkin}&checkout=${checkout}`;
