@@ -88,7 +88,7 @@ function displayApartmentDetails(apartment) {
     document.getElementById("reserve-btn").addEventListener("click", () => {
         const apartmentId = new URLSearchParams(window.location.search).get("id");
 
-        window.location.href = `reservation.html?id=${apartmentId}`;
+        window.location.href = `reservation.html?id=${apartmentId}&checkin=${checkin}&checkout=${checkout}`;
     });
 }
 

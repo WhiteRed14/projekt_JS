@@ -140,7 +140,7 @@ function addDetailsListeners() {
     detailButtons.forEach(button => {
         button.addEventListener("click", () => {
             const apartmentId = button.dataset.id;
-            window.location.href = `apartment.html?id=${apartmentId}`; // Przekierowanie do strony szczegółów
+            window.location.href = `apartment.html?id=${apartmentId}&checkin=${checkin}&checkout=${checkout}`; // Przekierowanie do strony szczegółów
         });
     });
 }
