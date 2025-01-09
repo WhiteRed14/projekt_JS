@@ -83,20 +83,20 @@ app.get('/hotelData', (req, res) => {
 // adding new reservations to the database
 app.post('/newReservation', (req, res) => {
 
-    const { name, img, description, price, rooms, adults, children, lat, lon, city } = req.body;
+    const { name, surname, email, country, country_code, phone, hotel_id, checkin, checkout } = req.body;
 
-    if (!name || !img || !description || !price || !rooms || !adults || !children || !lat || !lon || !city) {
+    if (!name || !surname || !email || !country || !country_code || !phone || !hotel_id || !checkin || !checkout) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     }
 
-    const query = 'INSERT INTO hotels (Name, Img, Description, Price, Rooms, Adults, Children, Lat, Lon, City) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [name, img, description, price, rooms, adults, children, lat, lon, city], (err, result) => {
+    const query = 'INSERT INTO reservations (Checkin, Checkout, Country, Country-Code, Email, Name, Phone, Surname, Hotel-Id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [name, surname, email, country, country_code, phone, hotel_id, checkin, checkout], (err, result) => {
         if (err) {
             console.error('Błąd zapisu do bazy danych:', err);
             return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
         }
-        console.log(`Dane ${name}, ${img}, ${description}, ${price}, ${rooms}, ${adults}, ${children}, ${lat}, ${lon}, ${city} zostały dodane do bazy`)
-        res.send(`Dane ${name}, ${img}, ${description}, ${price}, ${rooms}, ${adults}, ${children}, ${lat}, ${lon}, ${city} zostały zapisane pomyślnie!`);
+        console.log(`Dane ${name}, ${surname}, ${email}, ${country}, ${country_code}, ${phone}, ${hotel_id}, ${checkin}, ${checkout} zostały dodane do bazy`)
+        res.send(`Dane ${name}, ${surname}, ${email}, ${country}, ${country_code}, ${phone}, ${hotel_id}, ${checkin}, ${checkout} zostały zapisane pomyślnie!`);
     });
 });
 
