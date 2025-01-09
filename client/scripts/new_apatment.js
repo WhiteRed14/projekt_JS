@@ -19,3 +19,24 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Wysłane dane:", reservationData);
     });
 });
+
+
+//-- fragment fetch post z labów18
+
+document.getElementById('dataForm').addEventListener('submit', async (event) => { 
+    event.preventDefault(); // Zatrzymanie domyślnego działania formularza 
+    const formData = new FormData(event.target);
+    const data = { 
+        name: formData.get('name'),
+        surname: formData.get('surname'),
+        address: formData.get('address'),
+        major: formData.get('major'),
+        student_group: formData.get('student_group')
+    };
+    const response = await fetch('http://localhost:3000/submit', { 
+    method: 'POST', 
+    headers: { 'Content-Type': 'application/json' }, 
+    body: JSON.stringify(data) }); 
+    const result = await response.text(); 
+    alert(result); // Wyświetlenie odpowiedzi serwera
+});
