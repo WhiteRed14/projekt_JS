@@ -44,7 +44,7 @@ app.get('/hotels', (req, res) => {
     }
     
     const query = `SELECT Id, Name, Img FROM hotels WHERE City = ? AND Rooms >= ? AND Adults => ? AND Children >= ?`;
-    db.query(query, [location, checkin, checkout, adults, children, rooms], (err, result) => {
+    db.query(query, [location, rooms, adults, children, checkin, checkout], (err, result) => {
         if (err) {
             console.error('Błąd:', err);
             return res.status(500).send('Wystąpił błąd', err);
