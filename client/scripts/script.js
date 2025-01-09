@@ -99,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(data => {
             // console.log(data);
+            console.log(chcekin);
             displayResults(data, checkin, checkout);
         })
         .catch (error => {
@@ -129,7 +130,7 @@ function displayResults(data, checkin, checkout) {
         `;
         resultsSection.appendChild(apartmentElement);
     });
-            
+    console.log(checkin);
     addDetailsListeners(checkin, checkout);
 }
 
@@ -140,6 +141,7 @@ function addDetailsListeners(chcekin, chcekout) {
     detailButtons.forEach(button => {
         button.addEventListener("click", () => {
             const apartmentId = button.dataset.id;
+            console.log(chcekin);
 
             window.location.href = `apartment.html?id=${apartmentId}&checkin=${checkin}&checkout=${checkout}`; // Przekierowanie do strony szczegółów
         });
