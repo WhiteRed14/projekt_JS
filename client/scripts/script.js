@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json()
         })
         .then(data => {
-            displayResults(mockData);
+            displayResults(data);
         })
         .catch (error => {
             console.error('Błąd sieciowy:', error);
