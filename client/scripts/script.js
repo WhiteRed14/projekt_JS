@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const baseURL = 'http://94.172.254.196:3000'
 
-        fetch(`${baseURL}/hotels/?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&rooms=${rooms}&`)
+        fetch(`${baseURL}/hotels/?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${adults}&children=${children}&rooms=${rooms}`)
         .then(response => {
             if (response.ok) {
                 console.log("Dane wysłane pomyślnie!");
