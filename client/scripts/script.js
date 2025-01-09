@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(data => {
             // console.log(data);
-            displayResults(data);
+            displayResults(data, checkin, checkout);
         })
         .catch (error => {
             console.error('Błąd sieciowy:', error);
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //Wyświetlnie wyników
-function displayResults(data) {
+function displayResults(data, checkin, checkout) {
     const resultsSection = document.getElementById("results");
     resultsSection.innerHTML = ""; // Zeruje poprzednie wyniki
     
@@ -130,7 +130,7 @@ function displayResults(data) {
         resultsSection.appendChild(apartmentElement);
     });
             
-    addDetailsListeners();
+    addDetailsListeners(checkin, checkout);
 }
 
 //przycisk szczegółów
@@ -140,6 +140,7 @@ function addDetailsListeners() {
     detailButtons.forEach(button => {
         button.addEventListener("click", () => {
             const apartmentId = button.dataset.id;
+
             window.location.href = `apartment.html?id=${apartmentId}&checkin=${checkin}&checkout=${checkout}`; // Przekierowanie do strony szczegółów
         });
     });
