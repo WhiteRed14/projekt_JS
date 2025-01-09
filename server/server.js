@@ -33,6 +33,8 @@ app.use((req, res, next) => {
     next(); 
 });
 
+
+// searching for available hotels that match the requirements
 app.get('/hotels', (req, res) => {
     //console.log(req.query)
     const { location, checkin, checkout, adults, children, rooms } = req.query;
@@ -55,6 +57,32 @@ app.get('/hotels', (req, res) => {
     });
 });
 
+// returning all data regarding a hotel offer
+/*
+app.get('/hotels', (req, res) => {
+    //console.log(req.query)
+    const { location, checkin, checkout, adults, children, rooms } = req.query;
+
+    if (!location || !checkin || !checkout || !adults || !children || !rooms ) {
+        return res.status(400).send('Wszystkie pola są wymagane!');
+    } else {
+        console.log("dane odebranie poprawnie")
+    }
+    
+    const query = `SELECT Id, Name, Img FROM hotels WHERE (City = ?) AND (Rooms >= ?) AND (Adults >= ?) AND (Children >= ?)`;
+    db.query(query, [location, rooms, adults, children, checkin, checkout], (err, result) => {
+        if (err) {
+            console.error('Błąd:', err);
+            return res.status(500).send('Wystąpił błąd', err);
+        }
+
+        console.log(result);
+        return res.status(200).send(result);
+    });
+});
+*/
+
+// posting new apartments and adding them to the database -- not available from main.html
 app.post('/submit', (req, res) => {
 
     const { name, img, description, price, rooms, adults, children, lat, lon, city } = req.body;
