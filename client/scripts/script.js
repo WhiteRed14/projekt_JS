@@ -121,9 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const apartmentElement = document.createElement("div");
                 apartmentElement.className = "apartment-card";
                 apartmentElement.innerHTML = `
-                <img src="../../server/hotel_img/${apartment.image}" alt="${apartment.name}" class="apartment-image">
-                <h3>${apartment.name}</h3>
-                <button class="details-btn" data-id="${apartment.id}">Szczegóły</button>
+                <img src="../../server/hotel_img/${apartment.Img}" alt="${apartment.Name}" class="apartment-image">
+                <h3>${apartment.Name}</h3>
+                <button class="details-btn" data-id="${apartment.Id}">Szczegóły</button>
                 `;
                 resultsSection.appendChild(apartmentElement);
             });
