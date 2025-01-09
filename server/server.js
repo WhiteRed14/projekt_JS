@@ -69,7 +69,7 @@ app.post('/submit', (req, res) => {
             console.error('Błąd zapisu do bazy danych:', err);
             return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
         }
-    
+        console.log(`Dane ${name}, ${img}, ${description}, ${price}, ${rooms}, ${adults}, ${children}, ${lat}, ${lon}, ${city} zostały dodane do bazy`)
         res.send(`Dane ${name}, ${img}, ${description}, ${price}, ${rooms}, ${adults}, ${children}, ${lat}, ${lon}, ${city} zostały zapisane pomyślnie!`);
     });
 });
