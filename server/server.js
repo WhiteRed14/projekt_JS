@@ -83,23 +83,23 @@ app.get('/hotelData', (req, res) => {
 // adding new reservations to the database
 app.post('/newReservation', (req, res) => {
 
-    console.log(req.body)
-    const { name, surname, email, country, country_code, phone, hotel_id, checkin, checkout } = req.body;
+    //console.log(req.body)
+    const { name, surname, email, country, country_code, phone, hotel_Id, checkin, checkout } = req.body;
 
-    console.log(name, surname, email, country, country_code, phone, hotel_id, checkin, checkout)
+    //console.log(name, surname, email, country, country_code, phone, hotel_Id, checkin, checkout)
     
-    if (!name || !surname || !email || !country || !country_code || !phone || !hotel_id || !checkin || !checkout) {
+    if (!name || !surname || !email || !country || !country_code || !phone || !hotel_Id || !checkin || !checkout) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     }
 
     const query = 'INSERT INTO reservations (Checkin, Checkout, Country, Country-Code, Email, Name, Phone, Surname, Hotel-Id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [name, surname, email, country, country_code, phone, hotel_id, checkin, checkout], (err, result) => {
+    db.query(query, [name, surname, email, country, country_code, phone, hotel_Id, checkin, checkout], (err, result) => {
         if (err) {
             console.error('Błąd zapisu do bazy danych:', err);
             return res.status(500).send('Wystąpił błąd podczas zapisywania danych.');
         }
-        console.log(`Dane ${name}, ${surname}, ${email}, ${country}, ${country_code}, ${phone}, ${hotel_id}, ${checkin}, ${checkout} zostały dodane do bazy`)
-        res.send(`Dane ${name}, ${surname}, ${email}, ${country}, ${country_code}, ${phone}, ${hotel_id}, ${checkin}, ${checkout} zostały zapisane pomyślnie!`);
+        console.log(`Dane ${name}, ${surname}, ${email}, ${country}, ${country_code}, ${phone}, ${hotel_Id}, ${checkin}, ${checkout} zostały dodane do bazy`)
+        res.send(`Dane ${name}, ${surname}, ${email}, ${country}, ${country_code}, ${phone}, ${hotel_Id}, ${checkin}, ${checkout} zostały zapisane pomyślnie!`);
     });
 });
 
