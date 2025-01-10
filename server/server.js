@@ -58,7 +58,7 @@ app.get('/hotels', (req, res) => {
         }
 
         console.log(result);
-        const query2 = `SELECT Checkin, Checkout FROM reservations WHERE (reservations.Hotel_Id = ?)`;
+        const query2 = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
 
         result.map((el) => {
             let isviable = true;
@@ -67,7 +67,7 @@ app.get('/hotels', (req, res) => {
                     console.error('Błąd:', err);
                     return res.status(500).send('Wystąpił błąd', err);
                 }
-                console.log(result, typeof result);
+                console.log(result);
                 if(!result.length==0) {
                     result.forEach((el) => {
                         if (!reservationCheck(el.Checkin, el.Checkout, checkin, checkout)) {
@@ -75,11 +75,12 @@ app.get('/hotels', (req, res) => {
                         }
                     })
                 }
+                if(isviable){
+                    console.log(`Hotel ${el.Name} is viable`)
+                    return el;
+                }
             })
-            if(isviable){
-                console.log(`Hotel ${el.Name} is viable`)
-                return el;
-            }
+            
         })
 
         return res.status(200).send(result);
