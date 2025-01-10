@@ -115,9 +115,9 @@ app.get('/hotels', (req, res) => {
 
 // returning all data regarding a hotel offer
 app.get('/hotelData', (req, res) => {
-    console.log(req.query)
+    //console.log(req.query)
     const id = req.query;
-
+    console.log(id);
     if (!id) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     } else {
