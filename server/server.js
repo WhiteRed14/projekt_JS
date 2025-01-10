@@ -71,7 +71,7 @@ app.get('/hotels', (req, res) => {
                 console.log(result);
                 if(!result.length==0) {
                     result.forEach((el) => {
-                        if (!reservationCheck(el.Checkin, el.Checkout, checkin, checkout)) {
+                        if (!reservationCheck(el.Checkin, el.Checkout, new Date(checkin), new Date(checkout))) {
                             isviable = false;
                         }
                     })
