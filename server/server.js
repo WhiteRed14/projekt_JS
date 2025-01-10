@@ -75,32 +75,36 @@ app.get('/hotels', (req, res) => {
         console.log(result);
         const query2 = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
 
-        result.map((el) => {
-            let isviable = true;
-            db.query(query2, [el.Id], (err, result) => {
-                if (err) {
-                    console.error('Błąd:', err);
-                    return res.status(500).send('Wystąpił błąd', err);
-                }
-                console.log(result);
-                if(!result.length==0) {
-                    result.forEach((el) => {
-                        if (!reservationCheck(el.Checkin, el.Checkout, new Date(checkin), new Date(checkout))) {
-                            isviable = false;
-                        }
-                    })
-                }
-                if(isviable){
-                    console.log(`Hotel ${el.Name} is viable`)
-                    return el;
-                } else {
-                    console.log(`Hotel ${el.Name} is not viable`)
-                    return {};
-                }
+        try {
+            result.map((el) => {
+                let isviable = true;
+                db.query(query2, [el.Id], (err, result) => {
+                    if (err) {
+                        
+                    }
+                    console.log(result);
+                    if(!result.length==0) {
+                        result.forEach((el) => {
+                            if (!reservationCheck(el.Checkin, el.Checkout, new Date(checkin), new Date(checkout))) {
+                                isviable = false;
+                            }
+                        })
+                    }
+                    if(isviable){
+                        console.log(`Hotel ${el.Name} is viable`)
+                        return el;
+                    } else {
+                        console.log(`Hotel ${el.Name} is not viable`)
+                        return {};
+                    }
+                })
             })
-        })
-        console.log(result);
-        return res.status(200).send(result);
+            console.log(result);
+            return res.status(200).send(result);
+        } catch (err) {
+            console.error('Błąd:', err);
+            return res.status(500).send('Wystąpił błąd', err);
+        }
     });
 });
 
