@@ -1,60 +1,73 @@
 document.addEventListener("DOMContentLoaded", () => {
     //Przykładowe dane jakie może dostawać z serwera
     // (Chyba taka może być tabela, ale może o czymś nie pomyślałem)
-    const mockApartment = [
-        {
-            "id": 1,
-            "name": "Sheraton-sopot",
-            "image": "../../server/hotel_img/sheraton-sopot.jpg",
-            "description": "Położony zaledwie kilka kroków od piaszczystej plaży oraz sopockiego molo, oferuje 189 komfortowych pokoi w tym 11 wyjątkowych apartamentów z widokiem na Zatokę Gdańską. Na terenie Hotelu znajduje się jedno z największych centrów konferencyjnych w regionie z 14 salami konferencyjnymi o łącznej powierzchni 3000 m2.",
-            "price": 450,
-            "rooms": 3,
-            "adults": 4,
-            "children": 2,
-            "latitude": 54.4466,
-            "longitude": 18.569228,
-            "city": "krakow"
-        },
-        {
-            "id": 2,
-            "name": "testowa nazwa 1",
-            "image": "../../server/hotel_img/test1.jpg",
-            "description": "Programmers. Everyday. Why? Why? Why? Oh, that's why",
-            "price": 300,
-            "rooms": 1,
-            "adults": 2,
-            "children": 3,
-            "latitude": 54.444741,
-            "longitude": 18.554363,
-            "city": "gdynia"
-        },
-        {
-            "id": 3,
-            "name": "2 nazwa testowa",
-            "image": "../../server/hotel_img/test2.jpg",
-            "description": "Front-end is the path to the dark side. Front-end leads to html. Html lead to scripting. Scripting leads to suffering.",
-            "price": 100,
-            "rooms": 1,
-            "adults": 1,
-            "children": 0,
-            "latitude": 54.467854,
-            "longitude": 18.504466,
-            "city": "warszawa"
-        }
-    ];
+    // const mockApartment = [
+    //     {
+    //         "name": "Sheraton-sopot",
+    //         "image": "../../server/hotel_img/sheraton-sopot.jpg",
+    //         "description": "Położony zaledwie kilka kroków od piaszczystej plaży oraz sopockiego molo, oferuje 189 komfortowych pokoi w tym 11 wyjątkowych apartamentów z widokiem na Zatokę Gdańską. Na terenie Hotelu znajduje się jedno z największych centrów konferencyjnych w regionie z 14 salami konferencyjnymi o łącznej powierzchni 3000 m2.",
+    //         "price": 450,
+    //         "rooms": 3,
+    //         "adults": 4,
+    //         "children": 2,
+    //         "latitude": 54.4466,
+    //         "longitude": 18.569228,
+    //         "city": "krakow"
+    //     },
+    //     {
+    //         "name": "testowa nazwa 1",
+    //         "image": "../../server/hotel_img/test1.jpg",
+    //         "description": "Programmers. Everyday. Why? Why? Why? Oh, that's why",
+    //         "price": 300,
+    //         "rooms": 1,
+    //         "adults": 2,
+    //         "children": 3,
+    //         "latitude": 54.444741,
+    //         "longitude": 18.554363,
+    //         "city": "gdynia"
+    //     },
+    //     {
+    //         "name": "2 nazwa testowa",
+    //         "image": "../../server/hotel_img/test2.jpg",
+    //         "description": "Front-end is the path to the dark side. Front-end leads to html. Html lead to scripting. Scripting leads to suffering.",
+    //         "price": 100,
+    //         "rooms": 1,
+    //         "adults": 1,
+    //         "children": 0,
+    //         "latitude": 54.467854,
+    //         "longitude": 18.504466,
+    //         "city": "warszawa"
+    //     }
+    // ];
+    // const apartment = mockApartment.find(ap => ap.id === apartmentId);
 
     //`id` z adresu URL
+   
     const params = new URLSearchParams(window.location.search);
     const apartmentId = parseInt(params.get("id")); // Pobierz id i zamień na liczbę  
     console.log(apartmentId);
 
     // Znajdź apartament z opdowiednim ID(tu bedzie pobierał z 
     // serwera ale narazie działa na przykłądowych danych)
-    const apartment = mockApartment.find(ap => ap.id === apartmentId);
-    console.log(apartment);
 
+    fetch(apartmentId)
+    .then(response => {
+        if (response.ok) {
+            console.log("Dane wysłane pomyślnie!");
+            
+        } else {
+            console.error('Błąd przy wysyłaniu danych:', response.statusText);
+        }
+        return response.json()
+    })
+    .then(data => {
+        console.log(data);
 
-    displayApartmentDetails(apartment);
+        displayApartmentDetails(data);
+    })
+    .catch (error => {
+        console.error('Błąd sieciowy:', error);
+    }) 
 });
 
 
