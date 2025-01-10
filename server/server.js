@@ -76,13 +76,14 @@ app.get('/hotels', (req, res) => {
         const query2 = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
         
         const result2 = result.map((el) => {
+            try {
             db.query(query2, [el.Id], (err, result) => {
-                if (err) {
-                    console.error('Błąd:', err);
-                    return res.status(500).send('Wystąpił błąd', err);
-                }
                 return result;
             })
+            } catch(err) {
+                console.error('Błąd:', err);
+                return res.status(500).send('Wystąpił błąd', err);
+            }
         })
         console.log(result2);
         //return res.status(200).send(result2);
