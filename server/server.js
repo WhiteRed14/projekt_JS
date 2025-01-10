@@ -35,8 +35,8 @@ app.use((req, res, next) => {
 
 //function for checking potencial checkin&checkout collisions between existing reservations and potential new ones
 function reservationCheck(in1, out1, in2, out2) { // will return false if checkin&checkout times collide and true if they don't
-    console.log(in1, out1);
-    console.log(in2, out2);
+    console.log("Checkin&Checkout of reservation", in1, out1);
+    console.log("Checkin&Checkout to check if collides", in2, out2);
     if (in1 < in2) {
         if (in2 < out1) {
             return false;
@@ -59,7 +59,7 @@ async function isViable(hotelId, checkin, checkout) {
         await db.promise().query(query, [hotelId])
             .then((result) => {
             const [rows, fields] = result;
-            console.log('second query result', rows);
+            console.log('Second query result', rows);
             if(rows.length!=0){
                 return (rows.reduce((acc, curr) => {
                     return (acc&&reservationCheck(curr.Checkin, curr.Checkout, checkin, checkout))
@@ -94,7 +94,7 @@ app.get('/hotels', (req, res) => {
             return res.status(500).send('Wystąpił błąd', err);
         }
 
-        console.log(result);
+        console.log("First query result:",result);
 
         Promise.all(result.map((el) => isViable(el.Id)))
         .then((results) => {
