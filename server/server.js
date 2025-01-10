@@ -58,9 +58,10 @@ async function isViable(hotelId, checkin, checkout) {
         const query = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
         await db.promise().query(query, [hotelId])
             .then((result) => {
-            console.log('second query result',result);
-            if(result.length!=0){
-                return (result.reduce((acc, curr) => {
+            const [rows, fields] = result;
+            console.log('second query result', rows);
+            if(rows.length!=0){
+                return (rows.reduce((acc, curr) => {
                     return (acc&&reservationCheck(curr.Checkin, curr.Checkout, checkin, checkout))
                 }, true))
             } else {
