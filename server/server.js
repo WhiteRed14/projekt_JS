@@ -35,6 +35,7 @@ app.use((req, res, next) => {
 
 //function for checking potencial checkin&checkout collisions between existing reservations and potential new ones
 function reservationCheck(in1, out1, in2, out2) { // will return false if checkin&checkout times collide and true if they don't
+    console.log(in1, in2, out1, out2)
     return true;
 }
 
@@ -80,9 +81,7 @@ app.get('/hotels', (req, res) => {
                     return el;
                 }
             })
-            
         })
-
         return res.status(200).send(result);
     });
 });
