@@ -56,7 +56,7 @@ function reservationCheck(in1, out1, in2, out2) { // will return false if checki
 async function isViable(hotelId, checkin, checkout) {
     try {
         const query = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
-        await db.promise().query(query, [hotelId])
+        const result = await db.promise().query(query, [hotelId])
             .then((result) => {
             const [rows, fields] = result;
             console.log('Second query result', rows);
@@ -68,6 +68,7 @@ async function isViable(hotelId, checkin, checkout) {
                 return true
             }
         })
+        return result;
     } catch(err) {
         console.error('Błąd:', err);
         return res.status(500).send('Wystąpił błąd', err);
