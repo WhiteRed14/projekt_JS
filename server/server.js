@@ -95,10 +95,11 @@ app.get('/hotels', (req, res) => {
                     return el;
                 } else {
                     console.log(`Hotel ${el.Name} is not viable`)
-                    return;
+                    return {};
                 }
             })
         })
+        console.log(result);
         return res.status(200).send(result);
     });
 });
