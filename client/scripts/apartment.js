@@ -50,7 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Znajdź apartament z opdowiednim ID(tu bedzie pobierał z 
     // serwera ale narazie działa na przykłądowych danych)
 
-    fetch(apartmentId)
+    const baseURL = 'http://94.172.254.196:3000'
+
+    fetch(baseURL+'/hoteldata/?id='+apartmentId)
     .then(response => {
         if (response.ok) {
             console.log("Dane wysłane pomyślnie!");
