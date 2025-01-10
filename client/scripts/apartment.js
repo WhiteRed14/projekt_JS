@@ -60,12 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             console.error('Błąd przy wysyłaniu danych:', response.statusText);
         }
-        return response.json()[0]
+        return response.json()
     })
     .then(data => {
         console.log(data);
 
-        displayApartmentDetails(data);
+        displayApartmentDetails(data[0]);
     })
     .catch (error => {
         console.error('Błąd sieciowy:', error);
