@@ -96,7 +96,7 @@ app.get('/hotels', (req, res) => {
 
         console.log("First query result:",result);
 
-        Promise.all(result.map((el) => isViable(el.Id, checkin, checkout)))
+        Promise.all(result.map((el) => isViable(el.Id, new Date(checkin), new Date(checkout))))
         .then((results) => {
             console.log("Final results:", results);
         })
