@@ -101,10 +101,10 @@ app.get('/hotels', (req, res) => {
         .then((results) => {
             console.log("isViable results:", results);
             console.log("result before cutting nonviable:", result);
-            result.forEach((el, id) => {
-                console.log(`Hotel ${el.Name} viability: ${results[id]}`)
-                if(!results[id]){
-                    result.pop(id)
+            results.forEach((el, id) => {
+                console.log(`Hotel ${result[id].Name} viability: ${el}`)
+                if(!el){
+                    result.pop(result[id])
                 }
             })
             console.log("Viable hotels:", result);
