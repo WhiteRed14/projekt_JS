@@ -35,8 +35,8 @@ app.use((req, res, next) => {
 
 //function for checking potencial checkin&checkout collisions between existing reservations and potential new ones
 function reservationCheck(in1, out1, in2, out2) { // will return false if checkin&checkout times collide and true if they don't
-    console.log("Checkin&Checkout of reservation", in1, out1);
-    console.log("Checkin&Checkout to check if collides", in2, out2);
+    //console.log("Checkin&Checkout of reservation", in1, out1);
+    //console.log("Checkin&Checkout to check if collides", in2, out2);
     if (in1 < in2) {
         if (in2 < out1) {
             return false;
@@ -59,7 +59,7 @@ async function isViable(hotelId, checkin, checkout) {
         const result = await db.promise().query(query, [hotelId])
             .then((result) => {
             const [rows, fields] = result;
-            console.log('Second query result', rows);
+            //console.log('Second query result', rows);
             if(rows.length!=0){
                 return (rows.reduce((acc, curr) => {
                     return (acc&&reservationCheck(curr.Checkin, curr.Checkout, checkin, checkout))
@@ -100,7 +100,7 @@ app.get('/hotels', (req, res) => {
         Promise.all(result.map((el) => isViable(el.Id, new Date(checkin), new Date(checkout))))
         .then((results) => {
             console.log("isViable results:", results);
-            console.log("Results before cutting nonviable:", result);
+            //console.log("Results before cutting nonviable:", result);
             results.forEach((el, id) => {
                 //console.log(`Hotel ${result[id].Name} viability: ${el}`)
                 if(!el){
