@@ -78,25 +78,25 @@ function displayApartmentDetails(apartment) {
 
     const detailsSection = document.getElementById("apartment-details");
     detailsSection.innerHTML = `
-        <img src="${apartment.image}" alt="${apartment.name}" class="apartment-image">
-        <h2>${apartment.name}</h2>
-        <p>${apartment.description}</p>
-        <p>Apartament posiada ${apartment.rooms} pokoje.</p>
-        <p>Pomieści: ${apartment.adults} dorosłych i ${apartment.children} dzieci.</p>
-        <p>Cena: ${apartment.price} PLN za noc.</p>
+        <img src="${apartment.Img}" alt="${apartment.Name}" class="apartment-image">
+        <h2>${apartment.Name}</h2>
+        <p>${apartment.Description}</p>
+        <p>Apartament posiada ${apartment.Rooms} pokoje.</p>
+        <p>Pomieści: ${apartment.Adults} dorosłych i ${apartment.Children} dzieci.</p>
+        <p>Cena: ${apartment.Price} PLN za noc.</p>
         <div id="map" style="height: 300px; margin-top: 20px;"></div>
         <button id="reserve-btn">Zarezerwuj</button>
     `;
 
     // Mapa Leaflet
-    const map = L.map('map').setView([apartment.latitude, apartment.longitude], 13);
+    const map = L.map('map').setView([apartment.Lat, apartment.Lon], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    L.marker([apartment.latitude, apartment.longitude]).addTo(map)
-    .bindPopup(`<b>${apartment.name}`)
+    L.marker([apartment.Lat, apartment.Lon]).addTo(map)
+    .bindPopup(`<b>${apartment.Name}`)
     .openPopup();
 
     //Przycisk do rezerwacji
