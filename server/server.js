@@ -35,7 +35,8 @@ app.use((req, res, next) => {
 
 //function for checking potencial checkin&checkout collisions between existing reservations and potential new ones
 function reservationCheck(in1, out1, in2, out2) { // will return false if checkin&checkout times collide and true if they don't
-    console.log(in1, out1, in2, out2);
+    console.log(in1, out1);
+    console.log(in2, out2);
     if (in1 < in2) {
         if (in2 < out1) {
             return false;
@@ -92,6 +93,9 @@ app.get('/hotels', (req, res) => {
                 if(isviable){
                     console.log(`Hotel ${el.Name} is viable`)
                     return el;
+                } else {
+                    console.log(`Hotel ${el.Name} is not viable`)
+                    return;
                 }
             })
         })
