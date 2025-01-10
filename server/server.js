@@ -35,7 +35,21 @@ app.use((req, res, next) => {
 
 //function for checking potencial checkin&checkout collisions between existing reservations and potential new ones
 function reservationCheck(in1, out1, in2, out2) { // will return false if checkin&checkout times collide and true if they don't
-    return true;
+    console.log(in1, out1, in2, out2);
+    if (in1 < in2) {
+        if (in2 < out1) {
+            return false;
+        }
+    } else {
+        if(in1 > in2) {
+            if (out2 > out1) {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    return true
 }
 
 
@@ -70,7 +84,7 @@ app.get('/hotels', (req, res) => {
                 console.log(result);
                 if(!result.length==0) {
                     result.forEach((el) => {
-                        if (!reservationCheck(el.Checkin, el.Checkout, checkin, checkout)) {
+                        if (!reservationCheck(el.Checkin, el.Checkout, new Date(checkin), new Date(checkout))) {
                             isviable = false;
                         }
                     })
@@ -80,9 +94,7 @@ app.get('/hotels', (req, res) => {
                     return el;
                 }
             })
-            
         })
-
         return res.status(200).send(result);
     });
 });
