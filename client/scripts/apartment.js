@@ -78,7 +78,7 @@ function displayApartmentDetails(apartment) {
 
     const detailsSection = document.getElementById("apartment-details");
     detailsSection.innerHTML = `
-        <img src="server/hotel_img/${apartment.Img}" alt="${apartment.Name}" class="apartment-image">
+        <img src="../../server/hotel_img/${apartment.Img}" alt="${apartment.Name}" class="apartment-image">
         <h2>${apartment.Name}</h2>
         <p>${apartment.Description}</p>
         <p>Apartament posiada ${apartment.Rooms} pokoje.</p>
