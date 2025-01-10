@@ -95,11 +95,18 @@ app.get('/hotels', (req, res) => {
             return res.status(500).send('Wystąpił błąd', err);
         }
 
-        console.log("First query result:",result);
+        console.log("First query result:", result);
 
         Promise.all(result.map((el) => isViable(el.Id, new Date(checkin), new Date(checkout))))
         .then((results) => {
-            console.log("Final results:", results);
+            console.log("isViable results:", results);
+            results.forEach((el, id) => {
+                if(!el){
+                    result.pop(id)
+                }
+            })
+            console.log("Viable hotels:", result);
+            return res.status(200).send(result);
         })
     });
 });
