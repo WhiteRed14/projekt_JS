@@ -77,11 +77,12 @@ app.get('/hotels', (req, res) => {
                 }
             })
             if(isviable){
+                console.log(`Hotel ${el.Name} is viable`)
                 return el;
             }
         })
 
-        //return res.status(200).send(result);
+        return res.status(200).send(result);
     });
 });
 
