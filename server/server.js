@@ -100,6 +100,7 @@ app.get('/hotels', (req, res) => {
         Promise.all(result.map((el) => isViable(el.Id, new Date(checkin), new Date(checkout))))
         .then((results) => {
             console.log("isViable results:", results);
+            console.log("result before cutting nonviable:", result);
             results.forEach((el, id) => {
                 console.log(`Hotel ${result[id].Name} viability: ${el}`)
                 if(!el){
