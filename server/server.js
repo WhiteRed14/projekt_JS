@@ -85,7 +85,10 @@ app.get('/hotels', (req, res) => {
                 return res.status(500).send('Wystąpił błąd', err);
             }
         })
-        console.log(result2);
+        Promise.all(result2).then((values) => {
+            console.log(values);
+        })
+        //console.log(result2);
         //return res.status(200).send(result2);
     });
 });
