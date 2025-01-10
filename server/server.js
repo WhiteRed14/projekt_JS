@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 
 //function for checking potencial checkin&checkout collisions between existing reservations and potential new ones
 function reservationCheck(in1, out1, in2, out2) { // will return false if checkin&checkout times collide and true if they don't
-    console.log(in1.getFullYear(), in2getFullYear(), out1getFullYear(), out2getFullYear())
+    console.log(in1.getFullYear(), in2.getFullYear(), out1.getFullYear(), out2.getFullYear())
     return true
 }
 
