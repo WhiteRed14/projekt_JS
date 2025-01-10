@@ -101,7 +101,7 @@ app.get('/hotels', (req, res) => {
         .then((results) => {
             console.log("isViable results:", results);
             results.forEach((el, id) => {
-                console.log(`Hotel ${result[id]} viability: ${results[el]}`)
+                console.log(`Hotel ${result[id].Name} viability: ${el}`)
                 if(!el){
                     result.pop(id)
                 }
