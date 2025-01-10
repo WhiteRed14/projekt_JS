@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             console.error('Błąd przy wysyłaniu danych:', response.statusText);
         }
-        return response.json()
+        return response.json()[0]
     })
     .then(data => {
         console.log(data);
