@@ -33,6 +33,11 @@ app.use((req, res, next) => {
     next(); 
 });
 
+//function for checking potencial checkin&checkout collisions between existing reservations and potential new ones
+function reservationCheck(in1, out1, in2, out2) { // will return false if checkin&checkout times collide and true if they don't
+    return true;
+}
+
 
 // searching for available hotels that match the requirements
 app.get('/hotels', (req, res) => {
@@ -45,15 +50,38 @@ app.get('/hotels', (req, res) => {
         console.log("dane odebrane poprawnie")
     }
     
-    const query = `SELECT Id, Name, Img FROM hotels WHERE (City = ?) AND (Rooms >= ?) AND (Adults >= ?) AND (Children >= ?)`;
-    db.query(query, [location, rooms, adults, children, checkin, checkout], (err, result) => {
+    const query1 = `SELECT Id, Name, Img FROM hotels WHERE (City = ?) AND (Rooms >= ?) AND (Adults >= ?) AND (Children >= ?)`;
+    db.query(query1, [location, rooms, adults, children, checkin, checkout], (err, result) => {
         if (err) {
             console.error('Błąd:', err);
             return res.status(500).send('Wystąpił błąd', err);
         }
 
         console.log(result);
-        return res.status(200).send(result);
+        const query2 = `SELECT Checkin, Checkout FROM reservations WHERE (reservations.Hotel_Id = ?)`;
+
+        result.map((el) => {
+            let isviable = true;
+            db.query(query2, [el.Id], (err, result) => {
+                if (err) {
+                    console.error('Błąd:', err);
+                    return res.status(500).send('Wystąpił błąd', err);
+                }
+                console.log(result);
+                if(!result.length()==0) {
+                    result.forEach((el) => {
+                        if (!reservationCheck(el.Checkin, el.Checkout, checkin, checkout)) {
+                            isviable = false;
+                        }
+                    })
+                }
+            })
+            if(isviable){
+                return el;
+            }
+        })
+
+        //return res.status(200).send(result);
     });
 });
 
@@ -62,7 +90,7 @@ app.get('/hotelData', (req, res) => {
     //console.log(req.query)
     const id = req.query;
 
-    if (!id ) {
+    if (!id) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     } else {
         console.log("dane odebrane poprawnie")
