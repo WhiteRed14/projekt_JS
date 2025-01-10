@@ -85,7 +85,7 @@ app.get('/hotels', (req, res) => {
     if (!location || !checkin || !checkout || !adults || !children || !rooms ) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     } else {
-        console.log("dane odebrane poprawnie")
+        console.log("Request potencjalnych hoteli odebrany poprawnie!")
     }
     
     const query1 = `SELECT Id, Name, Img FROM hotels WHERE (City = ?) AND (Rooms >= ?) AND (Adults >= ?) AND (Children >= ?)`;
@@ -115,13 +115,13 @@ app.get('/hotels', (req, res) => {
 
 // returning all data regarding a hotel offer
 app.get('/hotelData', (req, res) => {
-    //console.log(req.query)
+    console.log(req.query)
     const id = req.query;
 
     if (!id) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     } else {
-        console.log("dane odebrane poprawnie")
+        console.log("Request szczegółowych danych hotelu odebrany poprawnie!")
     }
     
     const query = `SELECT * FROM hotels WHERE (Id = ?)`;
