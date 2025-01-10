@@ -102,7 +102,7 @@ app.get('/hotels', (req, res) => {
             console.log("isViable results:", results);
             console.log("Results before cutting nonviable:", result);
             results.forEach((el, id) => {
-                console.log(`Hotel ${result[id].Name} viability: ${el}`)
+                //console.log(`Hotel ${result[id].Name} viability: ${el}`)
                 if(!el){
                     result.splice(id, 1);
                 }
