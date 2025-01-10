@@ -82,7 +82,7 @@ app.get('/hotels', (req, res) => {
     //console.log(req.query)
     const { location, checkin, checkout, adults, children, rooms } = req.query;
 
-    if (!location || !checkin || !checkout || !adults || !children || !rooms ) {
+    if (!location || !checkin || !checkout || !adults || !rooms || !(children >= 0)) {
         return res.status(400).send('Wszystkie pola są wymagane!');
     } else {
         console.log("Request potencjalnych hoteli odebrany poprawnie!")
