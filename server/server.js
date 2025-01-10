@@ -53,6 +53,26 @@ function reservationCheck(in1, out1, in2, out2) { // will return false if checki
     return true
 }
 
+async function isViable(hotelId, checkin, checkout) {
+    try {
+        const query = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
+        await db.query(query, [hotelId]).then((result) => {
+            console.log(result);
+            if(result.length!=0){
+                return (result.reduce((acc, curr) => {
+                    return (acc&&reservationCheck(curr.Checkin, curr.Checkout, checkin, checkout))
+                }, true))
+            } else {
+                return true
+            }
+        })
+    } catch(err) {
+        console.error('Błąd:', err);
+        return res.status(500).send('Wystąpił błąd', err);
+    }
+
+}
+
 
 // searching for available hotels that match the requirements
 app.get('/hotels', (req, res) => {
@@ -73,23 +93,11 @@ app.get('/hotels', (req, res) => {
         }
 
         console.log(result);
-        const query2 = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
-        
-        const result2 = result.map((el) => {
-            try {
-            db.query(query2, [el.Id], (err, result) => {
-                return result;
-            })
-            } catch(err) {
-                console.error('Błąd:', err);
-                return res.status(500).send('Wystąpił błąd', err);
-            }
+
+        Promise.all(result.map((el) => isViable(el)))
+        .then((results) => {
+            console.log(results);
         })
-        Promise.all(result2).then((values) => {
-            console.log(values);
-        })
-        //console.log(result2);
-        //return res.status(200).send(result2);
     });
 });
 
