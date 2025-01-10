@@ -75,7 +75,7 @@ app.get('/hotels', (req, res) => {
         console.log(result);
         const query2 = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
         
-        result2 = result.map((el) => {
+        const result2 = result.map((el) => {
             let isviable = true;
             db.query(query2, [el.Id], (err, result) => {
                 if (err) {
