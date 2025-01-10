@@ -102,7 +102,7 @@ app.get('/hotels', (req, res) => {
             console.log("isViable results:", results);
             results.forEach((el, id) => {
                 if(!el){
-                    result.pop(id)
+                    result.pop(id-1)
                 }
             })
             console.log("Viable hotels:", result);
