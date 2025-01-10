@@ -67,8 +67,8 @@ app.get('/hotels', (req, res) => {
                     console.error('Błąd:', err);
                     return res.status(500).send('Wystąpił błąd', err);
                 }
-                console.log(result);
-                if(!result.length()==0) {
+                console.log(result, typeof result);
+                if(!result.length==0) {
                     result.forEach((el) => {
                         if (!reservationCheck(el.Checkin, el.Checkout, checkin, checkout)) {
                             isviable = false;
