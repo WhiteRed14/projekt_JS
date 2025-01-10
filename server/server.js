@@ -98,7 +98,7 @@ app.get('/hotels', (req, res) => {
 
         Promise.all(result.map((el) => isViable(el.Id)))
         .then((results) => {
-            console.log(results);
+            console.log("Final results:", results);
         })
     });
 });
