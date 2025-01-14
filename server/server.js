@@ -35,8 +35,8 @@ app.use((req, res, next) => {
 
 //function for checking potencial checkin&checkout collisions between existing reservations and potential new ones
 function reservationCheck(in1, out1, in2, out2) { // will return false if checkin&checkout times collide and true if they don't
-    //console.log("Checkin&Checkout of reservation", in1, out1);
-    //console.log("Checkin&Checkout to check if collides", in2, out2);
+    //console.log("Checkin&Checkout of existing reservation", in1, out1);
+    //console.log("Checkin&Checkout to check if new reservation collides", in2, out2);
     if (in1 < in2) {
         if (in2 < out1) {
             return false;
@@ -57,6 +57,7 @@ function reservationCheck(in1, out1, in2, out2) { // will return false if checki
     return true
 }
 
+//function checking if selected hotel is a available for the selected dates
 async function isViable(hotelId, checkin, checkout) {
     try {
         const query = `SELECT Checkin, Checkout, Hotel_Id FROM reservations WHERE (reservations.Hotel_Id = ?)`;
@@ -91,7 +92,7 @@ app.get('/hotels', (req, res) => {
     } else {
         console.log("Request potencjalnych hoteli odebrany poprawnie!")
     }
-    
+    //query for all hotels that match the city and adult/children/room capacity
     const query1 = `SELECT Id, Name, Img FROM hotels WHERE (City = ?) AND (Rooms >= ?) AND (Adults >= ?) AND (Children >= ?)`;
     db.query(query1, [location, rooms, adults, children, checkin, checkout], (err, result) => {
         if (err) {
@@ -100,7 +101,7 @@ app.get('/hotels', (req, res) => {
         }
 
         console.log("First query result:", result);
-
+        // When all hotels are checked for availability return a new list of viable hotels
         Promise.all(result.map((el) => isViable(el.Id, new Date(checkin), new Date(checkout))))
         .then((results) => {
             console.log("isViable results:", results);
@@ -117,7 +118,7 @@ app.get('/hotels', (req, res) => {
     });
 });
 
-// returning all data regarding a hotel offer
+// returning all data regarding a hotel offer by id
 app.get('/hotelData', (req, res) => {
     //console.log(req.query)
     const { id } = req.query;
